@@ -34,6 +34,7 @@ GEM
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
+    bluecloth (2.1.0)
     builder (3.0.0)
     capybara (1.1.1)
       mime-types (>= 1.16)
@@ -203,6 +204,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bluecloth
   coffee-rails (~> 3.1.0)
   compass (~> 0.12.alpha)
   devise

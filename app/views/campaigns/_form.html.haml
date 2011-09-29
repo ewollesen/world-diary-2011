@@ -1,10 +1,14 @@
-.field
-  .label
+= form_for(@campaign) do |f|
+  %p
     = f.label("name")
-  .input
+    %br
     = f.text_field("name")
-.field
-  .label
+  %p
     = f.label("description")
-  .input
+    %br
     = f.text_area("description")
+  %p.actions
+    .submit
+      = f.submit
+    .cancel
+      = link_to("Cancel", @campaign)

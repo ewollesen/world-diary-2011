@@ -2,9 +2,34 @@
 
 %h1= @campaign.name
 
-= @campaign.description
+:markdown
+  #{@campaign.description}
 
 %h2 People
-%ol
-  = list_of(@campaign.people.order("name")) do |person|
-    = link_to(person.name, person)
+
+%table
+  %thead
+    %tr
+      %th.num
+      %th Name
+      %th Last updated
+  %tbody
+    - @campaign.people.recently_updated.each_with_index do |person, idx|
+      %tr{:class => cycle("odd", "even")}
+        %td.num
+          = succeed(".") do
+            = 1 + idx
+        %td= link_to(person.name, person)
+        %td= person.updated_at.to_s(:short)
+
+%p
+  = link_to(people_path) do
+    See all #{pluralize(@campaign.people.count, "person")}.
+
+.actions
+  .edit
+    = link_to("Edit Campaign", edit_campaign_path(@campaign))
+  .delete
+    = link_to("Delete Campaign",
+              campaign_path(@campaign),
+              :method => :delete, :confirm => "Are you sure?")

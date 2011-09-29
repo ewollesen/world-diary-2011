@@ -13,6 +13,17 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def destroy
+    @campaign = Campaign.find(params[:id])
+
+    if @campaign.destroy
+      flash[:notice] = "Campaign destroyed successfully"
+    else
+      flash[:error] = "Error deleting campaign"
+    end
+    redirect_to campaigns_path
+  end
+
   def edit
     self.current_campaign = current_user.campaigns.find(params[:id])
   end

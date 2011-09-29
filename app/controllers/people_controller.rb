@@ -13,6 +13,17 @@ class PeopleController < ApplicationController
     end
   end
 
+  def destroy
+    @person = current_campaign.people.find(params[:id])
+
+    if @person.destroy
+      flash[:notice] = "Person destroyed successfully"
+    else
+      flash[:error] = "Error deleting person"
+    end
+    redirect_to people_path
+  end
+
   def edit
     @person = current_campaign.people.find(params[:id])
   end

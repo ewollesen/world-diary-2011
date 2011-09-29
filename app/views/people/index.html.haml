@@ -6,9 +6,19 @@
 
 %h1 People
 
-%ol
-  = list_of(@people.order("name")) do |person|
-    = link_to(person.name, person)
+%table
+  %thead
+    %tr
+      %th.num
+      %th Name
+
+  %tbody
+    - @people.order("name").each_with_index do |person, idx|
+      %tr{:class => cycle("odd", "even")}
+        %td.num
+          = succeed(".") do
+            = 1 + idx
+        %td= link_to(person.name, person)
 
 .actions
   = link_to("New Person", new_person_path)

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module ApplicationHelper
 
   def title(title)
@@ -55,6 +56,12 @@ module ApplicationHelper
       output = upper.index(char) + 65 if upper.include?(char)
       output ? "&##{output};" : (char == '@' ? '&#0064;' : char)
     end.join.html_safe
+  end
+
+  def table_index_link(total, shown, path)
+    if total > shown
+      link_to("…#{total - shown} more".html_safe, path)
+    end
   end
 
 

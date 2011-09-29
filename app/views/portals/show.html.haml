@@ -5,14 +5,64 @@
 %table
   %thead
     %tr
+      %th.num
       %th Name
       %th DM
-
   %tbody
-    - @campaigns.each do |campaign|
+    - @campaigns.each_with_index do |campaign, idx|
       %tr{:class => cycle("odd", "even")}
+        %td.num
+          = succeed(".") do
+            = 1 + idx
         %td= link_to(campaign.name, campaign)
         %td= campaign.dm_name
 
 %p
-  I am the very model of the modern major general.  I've knowledge of all things animal, mineral, and vegetable.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna nisi,
+  hendrerit eu posuere eu, ornare et lorem. In egestas consectetur enim,
+  tincidunt vestibulum turpis placerat eu. Etiam hendrerit cursus odio. Nam
+  quis quam tortor. Vivamus iaculis vestibulum sollicitudin. In facilisis
+  placerat dictum. Nam lobortis dapibus dui non pharetra. Aenean scelerisque
+  pulvinar mauris vel pharetra. Curabitur ornare volutpat enim vel vulputate.
+
+%p
+  Ut in ultrices neque. Curabitur hendrerit condimentum tincidunt. Praesent
+  gravida imperdiet ligula nec hendrerit. Sed sit amet nulla sit amet elit
+  feugiat eleifend. Donec eleifend commodo mauris ac scelerisque. Sed cursus
+  venenatis adipiscing. Nullam tempus quam eget ligula luctus ac condimentum
+  libero volutpat. Vivamus venenatis libero vitae lorem vestibulum
+  luctus. Nullam nec mollis leo. Phasellus eu justo id erat placerat
+  vestibulum a eget augue. Fusce vitae accumsan arcu. Nunc tincidunt auctor
+  auctor. Pellentesque risus arcu, pulvinar ac lacinia eu, mattis at dui. Sed
+  quis erat leo, sed molestie tellus. Curabitur sit amet dui elit. Ut
+  tincidunt ornare facilisis.
+
+%p
+  Vestibulum in mi nec nibh accumsan pellentesque. Lorem ipsum dolor sit amet,
+  consectetur adipiscing elit. Pellentesque varius dui non est vestibulum
+  fringilla. In vel convallis felis. Mauris quam purus, dignissim id posuere
+  sit amet, auctor quis sapien. Sed vitae lorem sit amet odio lobortis
+  vehicula eu eget tellus. Nam nisi massa, laoreet id vulputate id, rutrum sed
+  lorem. Aenean facilisis accumsan nibh. Duis sed nunc felis. Donec id arcu
+  lectus. Mauris venenatis auctor nisl ac luctus.
+
+%p
+  Proin arcu risus, consectetur sed vulputate scelerisque, interdum in
+  mi. Suspendisse iaculis sollicitudin velit, quis accumsan est adipiscing
+  eu. Nullam varius arcu eget eros consequat vitae pharetra turpis
+  porttitor. Quisque ac sem nulla. Sed pretium venenatis dolor. Donec nec urna
+  nulla, in mattis nunc. Proin gravida sagittis mauris non aliquet. Aenean dui
+  mauris, tempus quis sollicitudin nec, elementum vitae urna. Cras sagittis
+  urna massa, ac luctus diam. Maecenas vulputate, purus quis cursus luctus,
+  lorem nunc iaculis arcu, non porttitor lectus nulla at tortor. Phasellus
+  lobortis pellentesque arcu non viverra. Aliquam dignissim laoreet nunc, in
+  porttitor velit congue id.
+
+%p
+  Cras pellentesque consequat scelerisque. Nulla feugiat nunc ut leo rhoncus a
+  malesuada est tempus. Etiam bibendum eleifend tellus, sit amet ullamcorper
+  lacus lacinia eget. Mauris condimentum, felis non elementum faucibus, ligula
+  elit porta augue, ac sodales velit risus at ante. Praesent in ipsum nec
+  magna adipiscing elementum ac sed dui. Vestibulum justo nibh, placerat vitae
+  scelerisque at, dapibus at metus. Aenean vitae nibh turpis. Nullam rutrum
+  nunc in enim eleifend malesuada.

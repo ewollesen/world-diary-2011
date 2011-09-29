@@ -16,6 +16,7 @@ gem "devise"
 gem "haml-rails"
 gem "therubyracer"
 gem "compass", "~> 0.12.alpha"
+gem "bluecloth"
 
 group :test, :development do
   gem "ruby-debug19", :require => "ruby-debug"
