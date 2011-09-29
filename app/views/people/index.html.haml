@@ -3,7 +3,7 @@
 %h1 People
 
 %ol
-  = list_of(@people) do |person|
+  = list_of(@people.order("name")) do |person|
     = link_to(person.name, person)
 
 = link_to("New Person", new_person_path)

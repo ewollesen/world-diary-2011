@@ -6,5 +6,5 @@
 
 %h2 People
 %ol
-  = list_of(@campaign.people) do |person|
+  = list_of(@campaign.people.order("name")) do |person|
     = link_to(person.name, person)

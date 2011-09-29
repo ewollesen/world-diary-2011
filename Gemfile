@@ -15,6 +15,7 @@ gem "jquery-rails"
 gem "devise"
 gem "haml-rails"
 gem "therubyracer"
+gem "compass", "~> 0.12.alpha"
 
 group :test, :development do
   gem "ruby-debug19", :require => "ruby-debug"

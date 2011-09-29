@@ -7,7 +7,7 @@
         = precede(": ") do
           = yield(:title)
     = favicon_link_tag
-    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Arimo:400,400italic&v2"
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Forum"
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -33,14 +33,16 @@
             = link_to("Home", root_path)
           %li
             = link_to("Campaigns", campaigns_path)
-    .sidebar.right
-      = content_for(:sidebar) if content_for?(:sidebar)
-    .sidebar.left
-      - if current_campaign && current_campaign.persisted?
-        %ul.campaign_menu
-          %li
-            = link_to("People", people_path)
+      .clear
     #content
-      = yield
+      .sidebar.right
+        = content_for(:sidebar) if content_for?(:sidebar)
+      .sidebar.left
+        - if current_campaign && current_campaign.persisted?
+          %ul.campaign_menu
+            %li
+              = link_to("People", people_path)
+      .main
+        = yield
     #footer
       Copyright 2011 Eric Wollesen.  All rights reserved.
