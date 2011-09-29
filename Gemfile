@@ -25,5 +25,6 @@ group :test, :development do
   gem "rspec-rails"
   gem "steak"
   gem "factory_girl_rails"
+  gem "hpricot" # for html2haml
 end
 
