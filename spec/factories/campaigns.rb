@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :campaign do
-      name "MyString"
-      dm nil
-      description "MyText"
-    end
+    name "Xanadu"
+    dm
+    description "The magical world of Xanadu.  Bring your rollerskates."
+  end
 end

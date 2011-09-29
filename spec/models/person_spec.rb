@@ -1,5 +1,19 @@
 require 'spec_helper'
 
 describe Person do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  subject {Factory.build("person")}
+
+  it "requires a name" do
+    subject.name = nil
+
+    subject.should have(1).error_on("name")
+  end
+
+  it "requires a campaign" do
+    subject.campaign = nil
+
+    subject.should have(1).error_on("campaign")
+  end
+
 end
