@@ -1,0 +1,10 @@
+- title("Campaign: #{@campaign.name}")
+
+%h1= @campaign.name
+
+= @campaign.description
+
+%h2 People
+%ol
+  = list_of(@campaign.people) do |person|
+    = link_to(person.name, person)

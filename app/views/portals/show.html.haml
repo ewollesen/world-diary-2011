@@ -1,0 +1,15 @@
+%h1 World Diary
+
+%h2 Campaigns
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th DM
+
+  %tbody
+    - @campaigns.each do |campaign|
+      %tr{:class => cycle("odd", "even")}
+        %td= link_to(campaign.name, campaign)
+        %td= campaign.dm_name
