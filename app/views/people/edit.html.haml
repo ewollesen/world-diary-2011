@@ -1,10 +1,11 @@
-- title("New Person")
+- title("Edit Person")
 
 %ul.breadcrumbs
   %li= link_to(current_campaign.name, current_campaign)
   %li= link_to("People", people_path)
-  %li New Person
+  %li= link_to(@person.name, @person)
+  %li Edit Person
 
-%h1 New Person
+%h1 Edit Person
 
 = render("form")

@@ -1,10 +1,15 @@
-.field
-  .label
-    = f.label("name")
-  .input
-    = f.text_field("name")
-.field
-  .label
-    = f.label("description")
-  .input
-    = f.text_area("description")
+= form_for(@person) do |f|
+  .field
+    .label
+      = f.label("name")
+    .input
+      = f.text_field("name")
+  .field
+    .label
+      = f.label("description")
+    .input
+      = f.text_area("description")
+  .actions
+    = f.submit
+    .cancel
+      = link_to("Cancel", @person)

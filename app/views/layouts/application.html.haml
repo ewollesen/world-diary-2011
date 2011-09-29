@@ -38,11 +38,6 @@
       #content
         .sidebar.right
           = content_for(:sidebar) if content_for?(:sidebar)
-        .sidebar.left
-          - if current_campaign && current_campaign.persisted?
-            %ul.campaign_menu
-              %li
-                = link_to("People", people_path)
         .main
           = yield
       #footer

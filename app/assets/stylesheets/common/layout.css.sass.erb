@@ -3,10 +3,8 @@
 @import "compass/layout/grid-background"
 @import "compass/layout/sticky-footer"
 
-
-$grid-column-width: 30px
-$grid-gutter-width: 10px
-$grid-width: $grid-column-width + $grid-gutter-width
+@import "vars"
+@import "form"
 
 +establish-baseline(16px)
 +sticky-footer($base-line-height * 2, "#footer")
@@ -20,6 +18,19 @@ body
 
 h1
   +adjust-font-size-to($base-font-size * 2)
+
+
+.breadcrumbs
+  +adjust-font-size-to($base-font-size * 0.8125)
+
+  li
+    display: inline
+
+    &:after
+      content: ' ←'
+    &:last-child:after
+      content: ''
+
 
 #header
   ul
@@ -43,13 +54,8 @@ h1
     float: right
     width: 5 * $grid-width
 
-  .sidebar.left
-    float: left
-    width: 4 * $grid-width
-
   .main
     width: 15 * $grid-width
-    margin-left: 4 * $grid-width
 
 #footer
   clear: both

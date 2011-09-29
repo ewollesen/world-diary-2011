@@ -1,5 +1,13 @@
 - title("Person: #{@person.name}")
 
+%ul.breadcrumbs
+  %li= link_to(current_campaign.name, current_campaign)
+  %li= link_to("People", people_path)
+  %li= @person.name
+
 %h1= @person.name
 
 = @person.description
+
+.actions
+  = link_to("Edit Person", edit_person_path(@person))
