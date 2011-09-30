@@ -1,15 +1,10 @@
 # encoding: utf-8
 
 class UploadUploader < CarrierWave::Uploader::Base
-
-  # Include RMagick or ImageScience support:
+  include ActionView::Helpers::AssetTagHelper
   include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
-  # include CarrierWave::ImageScience
 
-  # Choose what kind of storage to use for this uploader:
   storage :file
-  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -18,29 +13,24 @@ class UploadUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
+  def default_url
+    "/assets/fallback/" + [version_name, "default.png"].compact.join('_')
+  end
 
-  # Process files as they are uploaded:
-  # process :scale => [200, 300]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
+
   process :fix_exif_rotation, :if => :file_is_image?
 
 
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :scale => [50, 50]
-  # end
   version "sidebar", :if => :file_is_image? do
     process :resize_to_fill => [240, 240]
   end
 
   version "thumb", :if => :file_is_image? do
-    process :resize_to_fill => [100, 100]
+    process :resize_to_fill => [96, 96]
+  end
+
+  def display_url
+    image?(url) ? url : default_url
   end
 
   def file_is_image?(file)

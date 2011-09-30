@@ -9,27 +9,34 @@
     = f.text_area("description", :class => "text")
   %fieldset
     %legend Uploads
-    = f.fields_for("uploads", @person.uploads) do |ff|
-      - if ff.object.new_record?
-        %p
-          = ff.label("upload", "Upload an image or other file")
-          %br
-          = ff.file_field("upload")
-          %br
-          = ff.label("caption")
-          %br
-          = ff.text_field("caption")
-      - else
-        %p
-          - if ff.object.upload.image?(ff.object.upload.url)
-            = ff.label("_destroy",
-                       image_tag(ff.object.upload.thumb.url, :size => "100x100"))
-          = ff.check_box("_destroy")
-          = ff.label("_destroy", "Delete")
-          %br
-          = ff.label("caption")
-          %br
-          = ff.text_field("caption")
+    .wrap
+      = f.fields_for("uploads", @person.uploads) do |ff|
+        - if ff.object.new_record?
+          %p
+            .spacer
+              = image_tag("fallback/thumb_default.png", :size => "100x100")
+            = ff.label("upload", "Upload an image or other file")
+            %br
+            = ff.file_field("upload")
+            %br
+            = ff.label("caption")
+            = ff.text_field("caption")
+        - else
+          %p
+            - if ff.object.upload.image?(ff.object.upload.url)
+              = ff.label("_destroy",
+                         image_tag(ff.object.upload.thumb.url, :size => "100x100"))
+            - else
+              = ff.label("_destroy",
+                         image_tag(ff.object.upload.thumb.default_url, :size => "100x100"))
+            = File.basename(ff.object.upload.url)
+            %br
+            = ff.label("caption")
+            = ff.text_field("caption")
+            %br
+            = ff.label("_destroy", "Delete")
+            = ff.check_box("_destroy")
+
   %p.actions
     .submit
       = f.submit

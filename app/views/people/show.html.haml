@@ -20,9 +20,9 @@
 
 - if @person.uploads
   = content_for(:sidebar) do
-    - @person.uploads.each do |upload|
+    - @person.uploads.order("created_at").each do |upload|
       .upload
         = link_to(upload.upload.url) do
-          = image_tag(upload.upload.sidebar.url, :size => "240x240")
+          = image_tag(upload.upload.sidebar.display_url, :size => "230x230")
         .caption
           = link_to_if(upload.caption, upload.caption, upload.upload.url)
