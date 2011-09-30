@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110929032009) do
+ActiveRecord::Schema.define(:version => 20110930142647) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(:version => 20110929032009) do
   end
 
   add_index "people", ["campaign_id"], :name => "index_people_on_campaign_id"
+
+  create_table "person_uploads", :force => true do |t|
+    t.string   "upload",     :null => false
+    t.string   "caption"
+    t.integer  "person_id",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "person_uploads", ["person_id"], :name => "index_person_uploads_on_person_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

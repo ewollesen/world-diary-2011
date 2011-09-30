@@ -43,6 +43,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.5.7)
+      activesupport (~> 3.0)
     childprocess (0.2.2)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
@@ -137,6 +139,7 @@ GEM
       thor (~> 0.14.6)
     rake (0.9.2)
     rdoc (3.9.4)
+    rmagick (2.13.1)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -205,6 +208,7 @@ PLATFORMS
 
 DEPENDENCIES
   bluecloth
+  carrierwave
   coffee-rails (~> 3.1.0)
   compass (~> 0.12.alpha)
   devise
@@ -217,6 +221,7 @@ DEPENDENCIES
   pry
   rails (= 3.1.0)
   rails3-generators
+  rmagick
   rspec-rails
   ruby-debug19
   sass-rails (~> 3.1.0)

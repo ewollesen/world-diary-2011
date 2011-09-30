@@ -1,4 +1,6 @@
 Wd::Application.routes.draw do
+  resources :person_uploads
+
   devise_for :users
 
   resources :people

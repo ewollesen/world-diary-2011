@@ -7,6 +7,28 @@
     = f.label("description")
     %br
     = f.text_area("description", :class => "text")
+  %fieldset
+    %legend Uploads
+    = f.fields_for("uploads", @person.uploads) do |ff|
+      - if ff.object.new_record?
+        %p
+          = ff.label("upload", "Upload an image or other file")
+          %br
+          = ff.file_field("upload")
+          %br
+          = ff.label("caption")
+          %br
+          = ff.text_field("caption")
+      - else
+        %p
+          = ff.label("_destroy",
+                     image_tag(ff.object.upload.sidebar.url, :size => "100x100"))
+          = ff.check_box("_destroy")
+          = ff.label("_destroy", "Delete")
+          %br
+          = ff.label("caption")
+          %br
+          = ff.text_field("caption")
   %p.actions
     .submit
       = f.submit

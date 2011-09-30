@@ -26,6 +26,7 @@ class PeopleController < ApplicationController
 
   def edit
     @person = current_campaign.people.find(params[:id])
+    @person.uploads.build
   end
 
   def index
@@ -34,6 +35,7 @@ class PeopleController < ApplicationController
 
   def new
     @person = current_campaign.people.build(params[:person])
+    @person.uploads.build
   end
 
   def show

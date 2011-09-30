@@ -1,0 +1,2 @@
+class PersonUploadsController < ApplicationController
+end

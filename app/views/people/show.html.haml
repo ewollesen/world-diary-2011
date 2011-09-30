@@ -17,3 +17,12 @@
     = link_to("Delete Person",
               person_path(@person),
               :method => :delete, :confirm => "Are you sure?")
+
+- if @person.uploads
+  = content_for(:sidebar) do
+    - @person.uploads.each do |upload|
+      .upload
+        = link_to(upload.upload.url) do
+          = image_tag(upload.upload.sidebar.url)
+        .caption
+          = link_to(upload.caption, upload.upload.url)
