@@ -6,7 +6,22 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!(name: "Eric W",
-             email: "ericw@xmtp.net",
-             password: "password",
-             password_confirmation: "password")
+u = User.create!(name: "Eric W",
+                 email: "ericw@xmtp.net",
+                 password: "password",
+                 password_confirmation: "password")
+
+c = u.campaigns.create!(name: "Rrkenlor")
+
+p = c.people.create!(name: "Alzara",
+                     description: "A powerful wizard.")
+
+fixtures_dir = File.join(File.dirname(__FILE__), "../spec/fixtures")
+photo = PersonUpload.new("caption" => "Awww, isn't he cute!?",
+                         "upload" => File.open(File.join(fixtures_dir, "Asher.jpg")))
+p.uploads << photo
+pdf = PersonUpload.new("upload" => File.open(File.join(fixtures_dir, "Driving Techniques.pdf")))
+p.uploads << pdf
+
+
+

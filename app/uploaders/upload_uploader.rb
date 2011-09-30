@@ -28,14 +28,33 @@ class UploadUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  process :fix_exif_rotation, :if => :file_is_image?
+
 
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process :scale => [50, 50]
   # end
-
-  version "sidebar" do
+  version "sidebar", :if => :file_is_image? do
     process :resize_to_fill => [240, 240]
+  end
+
+  version "thumb", :if => :file_is_image? do
+    process :resize_to_fill => [100, 100]
+  end
+
+  def file_is_image?(file)
+    image?(file.filename)
+  end
+
+  def image?(filename)
+    ext = File.extname(filename)
+    case ext
+    when /jpe?g/i, /png/i, /gif/i, /bmp/i
+      true
+    else
+      false
+    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
