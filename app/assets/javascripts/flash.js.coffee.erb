@@ -1,0 +1,58 @@
+# -*- coffee -*-
+
+$ ->
+  FLASH_DURATION = 10000
+  CLOSE_DURATION = 2000
+
+  close_flash = (jqElem) ->
+    height = jqElem.outerHeight()
+
+    jqElem.animate(
+      duration: CLOSE_DURATION
+      marginTop: -1 * height,
+      () ->
+        $(this).remove()
+    )
+
+  $(".flash .close").click(() ->
+    flash = $(this).parents(".flash")
+    close_flash(flash)
+  )
+
+  setTimeout(
+    () ->
+      $("div.flash").each((index, element) ->
+        close_flash($(element))
+      )
+    FLASH_DURATION
+  )
+
+  document.flash_warn = (message) ->
+    flash = $("<div/>").addClass("flash warn")
+    flash.append($("<img/>").attr(src: "<%= image_path("flash_warn.png") %>").addClass("warn")).append($("<img/>").attr(src: "<%= image_path("flash_close.png") %>").addClass("close")).append(message)
+    setTimeout(
+      () ->
+        close_flash(flash)
+      FLASH_DURATION
+    )
+    $("#flash_wrapper").append(flash)
+
+  document.flash_notice = (message) ->
+    flash = $("<div/>").addClass("flash notice")
+    flash.append($("<img/>").attr(src: "<%= image_path("flash_notice.png") %>").addClass("notice")).append($("<img/>").attr(src: "<%= image_path("flash_close.png") %>").addClass("close")).append(message)
+    setTimeout(
+      () ->
+        close_flash(flash)
+      FLASH_DURATION
+    )
+    $("#flash_wrapper").append(flash)
+
+  document.flash_error = (message) ->
+    flash = $("<div/>").addClass("flash error")
+    flash.append($("<img/>").attr(src: "<%= image_path("flash_error.png") %>").addClass("error")).append($("<img/>").attr(src: "<%= image_path("flash_close.png") %>").addClass("close")).append(message)
+    setTimeout(
+      () ->
+        close_flash(flash)
+      FLASH_DURATION
+    )
+    $("#flash_wrapper").append(flash)
