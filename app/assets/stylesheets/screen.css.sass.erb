@@ -21,12 +21,27 @@ form
     +leader(0.5)
     +trailer(0.5)
 
-  .submit
-    +column(12)
+  .left
+    +column(7)
 
-  .cancel
+    > *
+      margin-right: 0.5em
+
+    input
+      +confirm_button
+
+    a
+      +anchor_button
+
+  .right
     +float-right
     +last
+
+    a
+      +anchor_button
+
+      &.delete
+        +delete_button
 
   fieldset
     +leader(0.5)
@@ -44,6 +59,9 @@ form
 
   .spacer
     height: 100px
+
+  textarea
+    +column(15.5, true)
 
 p
   +leader(1)
@@ -85,12 +103,16 @@ table
 
 
 .actions
-  .edit
+  .left
     +column(7)
+    a
+      +anchor_button
 
-  .delete
+  .right
     +float-right
     +last
+    a.delete
+      +delete_button
 
 #content
   +column(24, true)

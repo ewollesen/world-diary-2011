@@ -38,7 +38,8 @@
             = ff.check_box("_destroy")
 
   %p.actions
-    .submit
+    .left
       = f.submit
-    .cancel
-      = link_to("Cancel", @person)
+      = cancel_button(@person)
+    .right
+      = delete_button(@person) unless @person.new_record?

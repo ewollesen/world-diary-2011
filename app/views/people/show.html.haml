@@ -11,12 +11,8 @@
   #{@person.description}
 
 .actions
-  .edit
-    = link_to("Edit Person", edit_person_path(@person))
-  .delete
-    = link_to("Delete Person",
-              person_path(@person),
-              :method => :delete, :confirm => "Are you sure?")
+  .left
+    = edit_button(@person)
 
 - if @person.uploads
   = content_for(:sidebar) do

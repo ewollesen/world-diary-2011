@@ -19,6 +19,7 @@ gem "compass", "~> 0.12.alpha"
 gem "bluecloth"
 gem "carrierwave"
 gem "rmagick", :require => "RMagick"
+gem "sassy-buttons"
 
 group :test, :development do
   gem "ruby-debug19", :require => "ruby-debug"
@@ -29,5 +30,6 @@ group :test, :development do
   gem "steak"
   gem "factory_girl_rails"
   gem "hpricot" # for html2haml
+  gem "faker"
 end
 

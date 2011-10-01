@@ -8,7 +8,8 @@
     %br
     = f.text_area("description")
   %p.actions
-    .submit
+    .left
       = f.submit
-    .cancel
-      = link_to("Cancel", @campaign)
+      = cancel_button(@campaign)
+    .right
+      = delete_button(@campaign) unless @campaign.new_record?

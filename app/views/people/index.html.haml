@@ -21,4 +21,5 @@
         %td= link_to(person.name, person)
 
 .actions
-  = link_to("New Person", new_person_path)
+  .left
+    = new_button(new_person_path)

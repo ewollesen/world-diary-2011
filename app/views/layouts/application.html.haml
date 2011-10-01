@@ -39,17 +39,6 @@
         .main
           = yield
         .sidebar
-          - if content_for?(:sidebar)
-            = content_for(:sidebar)
-          - else
-            %p
-              Vestibulum in mi nec nibh accumsan pellentesque. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit. Pellentesque varius dui non
-              est vestibulum fringilla. In vel convallis felis. Mauris quam
-              purus, dignissim id posuere sit amet, auctor quis sapien. Sed
-              vitae lorem sit amet odio lobortis vehicula eu eget tellus. Nam
-              nisi massa, laoreet id vulputate id, rutrum sed lorem. Aenean
-              facilisis accumsan nibh. Duis sed nunc felis. Donec id arcu
-              lectus. Mauris venenatis auctor nisl ac luctus.
+          = content_for(:sidebar) if content_for?(:sidebar)
       #footer
         Copyright 2011 Eric Wollesen.  All rights reserved.

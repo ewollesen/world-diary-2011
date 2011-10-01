@@ -6,7 +6,39 @@ $blueprint-grid-columns: 24
 $blueprint-grid-width: 30px
 $blueprint-grid-margin: 10px
 
+@import "blueprint/colors"
 @import "blueprint/grid"
 @import "compass/layout"
 @import "compass/typography"
+@import "sassy-buttons"
 
+$sb-gradient-style: "simple"
+$sb-padding: 0.2em 0.3em
+$sb-base-color: #ddd
+$sb-font-size: 12px
+$sb-text-color: black
+$sb-border-radius: 7.5px
+$sb-line-height: 1em
+
+
+= anchor_button_base
+  color: $font-color
+  display: inline-block
+  font:
+    family: "Lucida Grande"
+  line-height: 1.4
+  padding: 0.2em 0.5em
+  text:
+    decoration: none
+
+= anchor_button
+  +sassy-button
+  +anchor_button_base
+
+= delete_button
+  +sassy-button($first-color: $sb-base-color + #F00)
+  +anchor_button_base
+
+= confirm_button
+  +sassy-button($first-color: $sb-base-color + #0F0)
+  +anchor_button_base

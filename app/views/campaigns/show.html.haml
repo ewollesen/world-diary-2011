@@ -27,9 +27,5 @@
     See all #{pluralize(@campaign.people.count, "person")}.
 
 .actions
-  .edit
-    = link_to("Edit Campaign", edit_campaign_path(@campaign))
-  .delete
-    = link_to("Delete Campaign",
-              campaign_path(@campaign),
-              :method => :delete, :confirm => "Are you sure?")
+  .left
+    = edit_button(@campaign)
