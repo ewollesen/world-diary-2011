@@ -8,7 +8,7 @@
 %h1= @person.name
 
 :markdown
-  #{@person.description}
+  #{linkify(@person.description)}
 
 .actions
   .left
@@ -18,7 +18,7 @@
   = content_for(:sidebar) do
     - @person.uploads.order("created_at").each do |upload|
       .upload
-        = link_to(upload.upload.url) do
-          = image_tag(upload.upload.sidebar.display_url, :size => "230x230")
+        = link_to(upload.url) do
+          = image_tag(upload.sidebar.display_url, :size => "230x230")
         .caption
-          = link_to_if(upload.caption, upload.caption, upload.upload.url)
+          = link_to(upload.caption || File.basename(upload.url), upload.url)

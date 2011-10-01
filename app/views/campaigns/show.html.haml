@@ -3,7 +3,7 @@
 %h1= @campaign.name
 
 :markdown
-  #{@campaign.description}
+  #{linkify(@campaign.description)}
 
 %h2 People
 

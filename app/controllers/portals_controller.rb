@@ -1,7 +1,7 @@
 class PortalsController < ApplicationController
 
   def show
-    @campaigns = Campaign.all
+    @campaigns = Campaign.scoped
   end
 
 end

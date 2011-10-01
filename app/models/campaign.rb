@@ -11,4 +11,9 @@ class Campaign < ActiveRecord::Base
   delegate :name, :to => :dm, :prefix => true
 
   attr_accessible :name, :description
+
+
+  def self.recently_updated(num=5)
+    order("updated_at DESC").limit(num)
+  end
 end

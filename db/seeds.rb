@@ -15,6 +15,7 @@ u = User.create!(name: "Eric W",
                  password: "password",
                  password_confirmation: "password")
 
+c = u.campaigns.create!(name: "Gates of Hell")
 c = u.campaigns.create!(name: "Rrkenlor")
 
 25.times do
@@ -22,7 +23,18 @@ c = u.campaigns.create!(name: "Rrkenlor")
 end
 
 p = c.people.create!(name: "Alzara",
-                     description: lorem(4))
+                     description: <<EOF
+#{lorem(4)}
+
+This is a link to a person: (Pe:Alzara)
+
+This link is to a non-existent person named (Pe:Foo).
+
+This link has [alt text](Pe:Alzara).
+
+This link has a title (Pe:Alzara "Foo").
+EOF
+)
 
 fixtures_dir = File.join(File.dirname(__FILE__), "../spec/fixtures")
 photo = PersonUpload.new("caption" => "Awww, isn't he cute!\?",

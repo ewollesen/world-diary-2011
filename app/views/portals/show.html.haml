@@ -1,9 +1,9 @@
 %h1 World Diary
 
-%h2 Campaigns
-
 %p
   This is a place to keep track of your campaign's people.
+
+%h2 Campaigns
 
 %table
   %thead
@@ -11,11 +11,17 @@
       %th.num
       %th Name
       %th DM
+      %th Last update
   %tbody
-    - @campaigns.each_with_index do |campaign, idx|
+    - @campaigns.recently_updated.each_with_index do |campaign, idx|
       %tr{:class => cycle("odd", "even")}
         %td.num
           = succeed(".") do
             = 1 + idx
         %td= link_to(campaign.name, campaign)
         %td= campaign.dm_name
+        %td= campaign.updated_at.to_s(:short)
+
+%p
+  = link_to(people_path) do
+    See all #{pluralize(@campaigns.count, "campaign")}.

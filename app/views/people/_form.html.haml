@@ -14,7 +14,7 @@
         - if ff.object.new_record?
           %p
             .spacer
-              = image_tag("fallback/thumb_default.png", :size => "100x100")
+              = image_tag("fallback/thumb_default.png", :size => "110x110")
             = ff.label("upload", "Upload an image or other file")
             %br
             = ff.file_field("upload")
@@ -25,10 +25,10 @@
           %p
             - if ff.object.upload.image?(ff.object.upload.url)
               = ff.label("_destroy",
-                         image_tag(ff.object.upload.thumb.url, :size => "100x100"))
+                         image_tag(ff.object.upload.thumb.url, :size => "110x110"))
             - else
               = ff.label("_destroy",
-                         image_tag(ff.object.upload.thumb.default_url, :size => "100x100"))
+                         image_tag(ff.object.upload.thumb.default_url, :size => "110x110"))
             = File.basename(ff.object.upload.url)
             %br
             = ff.label("caption")

@@ -22,11 +22,11 @@ class UploadUploader < CarrierWave::Uploader::Base
 
 
   version "sidebar", :if => :file_is_image? do
-    process :resize_to_fill => [240, 240]
+    process :resize_to_fill => [230, 230]
   end
 
   version "thumb", :if => :file_is_image? do
-    process :resize_to_fill => [96, 96]
+    process :resize_to_fill => [110, 110]
   end
 
   def display_url
