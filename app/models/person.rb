@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  belongs_to :campaign, :inverse_of => :people
+  belongs_to :campaign, :inverse_of => :people, :touch => true
   has_many :uploads,
     :class_name => "PersonUpload",
     :dependent => :destroy,
