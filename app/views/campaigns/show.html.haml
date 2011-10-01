@@ -29,3 +29,6 @@
 .actions
   .left
     = edit_button(@campaign)
+
+= content_for(:head) do
+  = auto_discovery_link_tag(:rss, :format => "rss")
