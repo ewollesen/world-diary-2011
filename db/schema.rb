@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110930142647) do
+ActiveRecord::Schema.define(:version => 20111002182717) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(:version => 20110930142647) do
 
   add_index "person_uploads", ["person_id"], :name => "index_person_uploads_on_person_id"
 
+  create_table "user_roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -58,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20110930142647) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "name",                                                  :null => false
+    t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

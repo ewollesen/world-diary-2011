@@ -10,16 +10,21 @@ def lorem(paragraphs=3)
   Faker::Lorem.paragraphs(paragraphs).join("\n\n")
 end
 
-u = User.create!(name: "Gary G",
-                 email: "gygax@example.com",
-                 password: "password",
-                 password_confirmation: "password")
+admin = UserRole.create!(name: "admin")
 
 u = User.create!(name: "Eric W",
                  email: "ericw@xmtp.net",
                  password: "password",
                  password_confirmation: "password")
+u.role = admin
+u.save!
 
+gygax = User.create!(name: "Gary G",
+                 email: "gygax@example.com",
+                 password: "password",
+                 password_confirmation: "password")
+
+c = gygax.campaigns.create!(name: "Gygaxian Hell", private: true)
 c = u.campaigns.create!(name: "Gates of Hell", private: true)
 c = u.campaigns.create!(name: "Rrkenlor",
                         description: "Set in the city of the same name.")

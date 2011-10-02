@@ -12,6 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.token_authenticatable
 
       t.string :name, :null => false
+      t.references :role
 
       t.timestamps
     end

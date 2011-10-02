@@ -8,7 +8,7 @@
 * DONE form validation error styling
 * DONE private uploads
 * DONE indicate private uploads w/ visual overlay
-* TODO admin role
+* DONE admin role
 * TODO better close icon in flash (it's from mildred)
 * TODO veil pass
 * DONE flash styling

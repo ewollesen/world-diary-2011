@@ -1,4 +1,5 @@
 authorization do
+
   role :guest do
     has_permission_on :campaigns, :to => :read do
       if_attribute :private => is {false}
@@ -33,6 +34,11 @@ authorization do
       if_permitted_to :manage, :person
     end
   end
+
+  role :admin do
+    has_omnipotence
+  end
+
 end
 
 
