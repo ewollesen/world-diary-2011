@@ -29,7 +29,7 @@ class PeopleController < ApplicationController
   end
 
   def index
-    @people = current_campaign.people
+    @people = current_campaign.people.with_permissions_to(:read)
   end
 
   def new

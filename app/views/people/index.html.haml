@@ -13,7 +13,7 @@
       %th Name
 
   %tbody
-    - @people.order("name").each_with_index do |person, idx|
+    - @people.order("people.name").each_with_index do |person, idx|
       %tr{:class => cycle("odd", "even")}
         %td.num
           = succeed(".") do
