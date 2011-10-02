@@ -5,12 +5,14 @@
     %tr
       %th Name
       %th DM
+      %th Private
 
   %tbody
     - @campaigns.each do |campaign|
       %tr{:class => cycle("odd", "even")}
         %td= link_to(campaign.name, campaign)
         %td= campaign.dm_name
+        %td= campaign.private
 
 .actions
   .left

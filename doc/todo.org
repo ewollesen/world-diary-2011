@@ -1,5 +1,7 @@
-* DONE link markup
-* RSS feeds
-* private
+* DONE linkify
+* DONE RSS feeds
+* private campaigns
+* private people
+* authorization
 * veil pass
 * DONE flash styling

@@ -20,6 +20,7 @@ gem "bluecloth"
 gem "carrierwave"
 gem "rmagick", :require => "RMagick"
 gem "sassy-buttons"
+gem "declarative_authorization"
 
 group :test, :development do
   gem "ruby-debug19", :require => "ruby-debug"

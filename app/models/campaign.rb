@@ -10,7 +10,7 @@ class Campaign < ActiveRecord::Base
 
   delegate :name, :to => :dm, :prefix => true
 
-  attr_accessible :name, :description
+  attr_accessible :name, :description, :private
 
 
   def self.recently_updated(num=5)

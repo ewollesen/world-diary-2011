@@ -1,9 +1,10 @@
 class CampaignsController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :new, :update,]
+  filter_resource_access
 
 
   def create
-    self.current_campaign = current_user.campaigns.build(params[:campaign])
+    @campaign = current_user.campaigns.build(params[:campaign])
 
     if @campaign.save
       flash["notice"] = "Campaign created successfully"
@@ -29,20 +30,20 @@ class CampaignsController < ApplicationController
   end
 
   def index
-    self.current_campaign = nil
+    set_current_campaign
     @campaigns = Campaign.all
   end
 
   def new
-    self.current_campaign = current_user.campaigns.build(params[:campaign])
+    @campaign = current_user.campaigns.build(params[:campaign])
   end
 
   def show
-    self.current_campaign = Campaign.find(params[:id])
+    set_current_campaign
   end
 
   def update
-    self.current_campaign = current_user.campaigns.find(params[:id])
+    @campaign = current_user.campaigns.build(params[:campaign])
 
     if @campaign.update_attributes(params[:campaign])
       flash["notice"] = "Campaign updated successfully"
@@ -51,5 +52,4 @@ class CampaignsController < ApplicationController
       render :action => "edit"
     end
   end
-
 end

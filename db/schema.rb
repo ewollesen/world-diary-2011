@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20110930142647) do
     t.string   "name"
     t.integer  "dm_id"
     t.text     "description"
+    t.boolean  "private",     :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20110930142647) do
     t.string   "name"
     t.integer  "campaign_id"
     t.text     "description"
+    t.boolean  "private",     :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

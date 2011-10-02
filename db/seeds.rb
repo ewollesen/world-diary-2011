@@ -10,16 +10,22 @@ def lorem(paragraphs=3)
   Faker::Lorem.paragraphs(paragraphs).join("\n\n")
 end
 
+u = User.create!(name: "Gary G",
+                 email: "gygax@example.com",
+                 password: "password",
+                 password_confirmation: "password")
+
 u = User.create!(name: "Eric W",
                  email: "ericw@xmtp.net",
                  password: "password",
                  password_confirmation: "password")
 
-c = u.campaigns.create!(name: "Gates of Hell")
+c = u.campaigns.create!(name: "Gates of Hell", private: true)
 c = u.campaigns.create!(name: "Rrkenlor")
 
 25.times do
-  c.people.create!(name: Faker::Name.name, description: lorem)
+  p = rand(3) + 3
+  c.people.create!(name: Faker::Name.name, description: lorem(p))
 end
 
 p = c.people.create!(name: "Alzara",

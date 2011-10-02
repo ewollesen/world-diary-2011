@@ -4,6 +4,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string :name
       t.references :dm
       t.text :description
+      t.boolean :private, :default => false, :null => false
 
       t.timestamps
     end

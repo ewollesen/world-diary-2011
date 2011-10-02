@@ -40,7 +40,7 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    self.current_campaign = @person.campaign
+    set_current_campaign(@person.campaign)
   end
 
   def update

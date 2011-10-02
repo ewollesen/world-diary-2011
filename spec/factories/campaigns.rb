@@ -5,5 +5,11 @@ FactoryGirl.define do
     name "Xanadu"
     dm
     description "The magical world of Xanadu.  Bring your rollerskates."
+
+    trait :private do
+      private true
+    end
+
+    factory :private_campaign, traits: [:private,]
   end
 end
