@@ -27,10 +27,26 @@ input
   margin: 2px 0
 
 form
-  p
+  .field, .actions
     +column(15, true)
     +leader(0.5)
     +trailer(0.5)
+
+  .field
+    label
+      display: block
+
+      &.inline
+        display: inline
+
+  .error_explanation
+    color: red
+
+  .field_with_errors
+    display: inline
+
+    label
+      color: red
 
   .left
     +column(7)

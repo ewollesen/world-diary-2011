@@ -1,16 +1,17 @@
 = form_for(@campaign) do |f|
-  %p
+  .field
     = f.label("name")
-    %br
     = f.text_field("name")
-  %p
+    = f.error_message_on("name")
+  .field
     = f.label("description")
-    %br
     = f.text_area("description")
-  %p
-    = f.label("private")
+    = f.error_message_on("description")
+  .field
+    = f.label("private", nil, class: "inline")
     = f.check_box("private")
-  %p.actions
+    = f.error_message_on("private")
+  .actions
     .left
       = f.submit
       = cancel_button(@campaign)

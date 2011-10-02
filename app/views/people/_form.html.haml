@@ -1,30 +1,34 @@
 = form_for(@person) do |f|
-  %p
+  .field
     = f.label("name")
-    %br
     = f.text_field("name")
-  %p
+    = f.error_message_on("name")
+  .field
     = f.label("description")
-    %br
     = f.text_area("description")
-  %p
-    = f.label("private")
+    = f.error_message_on("description")
+  .field
+    = f.label("private", nil, class: "inline")
     = f.check_box("private")
+    = f.error_message_on("private")
   %fieldset
     %legend Uploads
     .wrap
       = f.fields_for("uploads", @person.uploads) do |ff|
         - if ff.object.new_record?
-          %p
+          .field
+            = ff.hidden_field("upload_cache")
             = ff.label("upload", image_tag("fallback/thumb_default.png", :size => "110x110"))
             = ff.label("upload", "Upload an image or other file")
             %br
             = ff.file_field("upload")
+            = ff.error_message_on("upload")
             %br
             = ff.label("caption", nil)
             = ff.text_field("caption")
+            = ff.error_message_on("caption")
         - else
-          %p
+          .field
             - if ff.object.upload.image?(ff.object.upload.url)
               = ff.label("_destroy",
                          image_tag(ff.object.upload.thumb.url, :size => "110x110"))
@@ -35,11 +39,13 @@
             %br
             = ff.label("caption")
             = ff.text_field("caption")
+            = ff.error_message_on("caption")
             %br
-            = ff.label("_destroy", "Delete")
+            = ff.label("_destroy", "Delete", class: "inline")
             = ff.check_box("_destroy")
+            = ff.error_message_on("_destroy")
 
-  %p.actions
+  .actions
     .left
       = f.submit
       = cancel_button(@person)

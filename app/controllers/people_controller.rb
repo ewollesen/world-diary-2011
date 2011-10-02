@@ -9,6 +9,7 @@ class PeopleController < ApplicationController
       flash[:notice] = "Person created successfully"
       redirect_to @person
     else
+      @person.uploads.build
       render :action => "new"
     end
   end
@@ -44,6 +45,7 @@ class PeopleController < ApplicationController
       flash[:notice] = "Person updated successfully"
       redirect_to @person
     else
+      @person.uploads.build
       render :action => "edit"
     end
   end
