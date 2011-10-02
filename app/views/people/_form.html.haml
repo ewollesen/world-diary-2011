@@ -24,9 +24,13 @@
             = ff.file_field("upload")
             = ff.error_message_on("upload")
             %br
-            = ff.label("caption", nil)
+            = ff.label("caption")
             = ff.text_field("caption")
             = ff.error_message_on("caption")
+            %br
+            = ff.label("private")
+            = ff.check_box("private")
+            = ff.error_message_on("private")
         - else
           .field
             - if ff.object.upload.image?(ff.object.upload.url)
@@ -40,6 +44,10 @@
             = ff.label("caption")
             = ff.text_field("caption")
             = ff.error_message_on("caption")
+            %br
+            = ff.label("private")
+            = ff.check_box("private")
+            = ff.error_message_on("private")
             %br
             = ff.label("_destroy", "Delete", class: "inline")
             = ff.check_box("_destroy")

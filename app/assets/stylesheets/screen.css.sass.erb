@@ -144,6 +144,19 @@ table
     a.delete
       +delete_button
 
+.overlay_container
+  display: block
+  position: relative
+
+  .overlay_wrap
+    +rhythm-borders(0px, 0.5, 16px, solid)
+    background-color: rgba(0, 0, 0, 0.5)
+    bottom: 0
+    display: block
+    position: absolute
+    right: 0
+
+
 #content
   +column(24, true)
   //+grid-background

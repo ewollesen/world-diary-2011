@@ -4,6 +4,7 @@ class CreatePersonUploads < ActiveRecord::Migration
       t.string :upload, :null => false
       t.string :caption
       t.references :person, :null => false
+      t.boolean :private, :default => false, :null => false
 
       t.timestamps
     end

@@ -16,11 +16,12 @@
   .left
     = edit_button(@person)
 
-- if @person.uploads
+- if @person.uploads.with_permissions_to(:read)
   = content_for(:sidebar) do
-    - @person.uploads.order("created_at").each do |upload|
+    - @person.uploads.with_permissions_to(:read).order("person_uploads.created_at").each do |upload|
       .upload
-        = link_to(upload.url) do
+        = link_to(upload.url, class: "overlay_container") do
           = image_tag(upload.sidebar.display_url, :size => "230x230")
+          = private_upload_icon(upload)
         .caption
-          = link_to(upload.caption || File.basename(upload.url), upload.url)
+          = link_to(upload.caption, upload.url)

@@ -5,6 +5,13 @@ class PersonUpload < ActiveRecord::Base
 
   validates :person, :presence => true
 
+  attr_accessible :caption, :private, :upload
+
+
+  def caption
+    cap = read_attribute(:caption)
+    cap.blank? ? File.basename(url) : cap
+  end
 
   def method_missing(name, *args)
     if upload.respond_to?(name)

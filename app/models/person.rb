@@ -10,9 +10,9 @@ class Person < ActiveRecord::Base
 
   accepts_nested_attributes_for :uploads,
     :allow_destroy => true,
-    :reject_if => :all_blank
+    :reject_if => proc {|attr| attr["id"].blank? && attr["caption"].blank? && attr["upload"].blank?}
 
-  attr_accessible :name, :description, :private
+  attr_accessible :name, :description, :private, :uploads_attributes
 
 
   def self.recently_updated(num=5)

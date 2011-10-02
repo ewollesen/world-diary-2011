@@ -63,6 +63,11 @@ module ApplicationHelper
     image_tag("lock.png", alt: "Closed padlock", title: "Private")
   end
 
+  def private_upload_icon(object)
+    return unless object.private
+    content_tag("span", private_icon(object), class: "overlay_wrap")
+  end
+
   def see_all_link(scope, term)
     "See all #{pluralize(scope.with_permissions_to(:read).count, term)}.".html_safe
   end

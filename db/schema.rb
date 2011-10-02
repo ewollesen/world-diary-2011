@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(:version => 20110930142647) do
   add_index "people", ["campaign_id"], :name => "index_people_on_campaign_id"
 
   create_table "person_uploads", :force => true do |t|
-    t.string   "upload",     :null => false
+    t.string   "upload",                        :null => false
     t.string   "caption"
-    t.integer  "person_id",  :null => false
+    t.integer  "person_id",                     :null => false
+    t.boolean  "private",    :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
