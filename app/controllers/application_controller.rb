@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   def permission_denied
     if current_user
-      flash[:error] = "Permission denied."
+      flash[:error] = "Permission denied"
       redirect_to root_path
     else
       authenticate_user!

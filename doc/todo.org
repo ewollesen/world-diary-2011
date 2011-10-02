@@ -1,8 +1,8 @@
 * DONE linkify
 * DONE RSS feeds
-* TODO private campaigns
-* TODO private people
-* TODO authorization
+* DONE private campaigns
+* DONE private people
+* DONE authorization
 * TODO veil pass
 * DONE flash styling
 * TODO versioning

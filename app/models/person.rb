@@ -12,6 +12,8 @@ class Person < ActiveRecord::Base
     :allow_destroy => true,
     :reject_if => :all_blank
 
+  attr_accessible :name, :description, :private
+
 
   def self.recently_updated(num=5)
     order("created_at DESC").limit(num)

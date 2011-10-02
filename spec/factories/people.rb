@@ -2,8 +2,14 @@
 
 FactoryGirl.define do
   factory :person do
-      name "MyString"
-      campaign nil
-      description "MyText"
+    name "Olivia Newton-John"
+    campaign
+    description "She's from down-under."
+
+    trait :private do
+      private true
     end
+
+    factory :private_person, traits: [:private,]
+  end
 end

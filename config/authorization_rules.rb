@@ -3,6 +3,11 @@ authorization do
     has_permission_on :campaigns, :to => :read do
       if_attribute :private => is {false}
     end
+
+    has_permission_on :people, :to => :read, :join_by => :and do
+      if_attribute :private => is {false}
+      if_permitted_to :read, :campaign
+    end
   end
 
   role :user do
@@ -11,6 +16,11 @@ authorization do
     has_permission_on :campaigns, :to => :create
     has_permission_on :campaigns, :to => :manage do
       if_attribute :dm => is {user}
+    end
+
+    has_permission_on :people, :to => :create
+    has_permission_on :people, :to => :manage do
+      if_permitted_to :manage, :campaign
     end
   end
 end

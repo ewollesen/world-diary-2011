@@ -1,10 +1,10 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :new, :update,]
   before_filter :require_current_campaign, :except => [:edit, :show,]
+  filter_resource_access
+
 
   def create
-    @person = current_campaign.people.build(params[:person])
-
     if @person.save
       flash[:notice] = "Person created successfully"
       redirect_to @person
@@ -14,8 +14,6 @@ class PeopleController < ApplicationController
   end
 
   def destroy
-    @person = current_campaign.people.find(params[:id])
-
     if @person.destroy
       flash[:notice] = "Person destroyed successfully"
     else
@@ -25,7 +23,6 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @person = Person.find(params[:id])
     self.current_campaign = @person.campaign
     @person.uploads.build
   end
@@ -35,24 +32,35 @@ class PeopleController < ApplicationController
   end
 
   def new
-    @person = current_campaign.people.build(params[:person])
     @person.uploads.build
   end
 
   def show
-    @person = Person.find(params[:id])
     self.current_campaign = @person.campaign
   end
 
   def update
-    @person = current_campaign.people.find(params[:id])
-
     if @person.update_attributes(params[:person])
       flash[:notice] = "Person updated successfully"
       redirect_to @person
     else
       render :action => "edit"
     end
+  end
+
+
+  protected
+
+  def load_person
+    if "show" == params[:action]
+      @person = Person.find(params[:id])
+    else
+      @person = current_campaign.people.find(params[:id])
+    end
+  end
+
+  def new_person_from_params
+    @person = current_campaign.people.build(params[:person])
   end
 
 end
