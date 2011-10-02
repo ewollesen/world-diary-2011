@@ -5,6 +5,8 @@
 * DONE authorization
 * DONE indicate when a person is private
 * DONE indicate when a campaign is private
+* TODO form validation error styling
+* TODO admin role
 * TODO private uploads
 * TODO veil pass
 * DONE flash styling
