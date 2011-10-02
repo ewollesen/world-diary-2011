@@ -14,7 +14,7 @@ class CampaignsController < ApplicationController
 
   def destroy
     if @campaign.destroy
-      flash[:notice] = "Campaign destroyed successfully"
+      flash[:notice] = "Campaign deleted successfully"
     else
       flash[:error] = "Error deleting campaign"
     end
