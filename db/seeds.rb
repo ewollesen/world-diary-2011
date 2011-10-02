@@ -21,7 +21,8 @@ u = User.create!(name: "Eric W",
                  password_confirmation: "password")
 
 c = u.campaigns.create!(name: "Gates of Hell", private: true)
-c = u.campaigns.create!(name: "Rrkenlor")
+c = u.campaigns.create!(name: "Rrkenlor",
+                        description: "Set in the city of the same name.")
 
 25.times do
   p = rand(3) + 3

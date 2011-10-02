@@ -1,9 +1,9 @@
 module CampaignsHelper
 
-  def campaign_description(campaign)
-    desc = campaign.description || "No description."
+  def campaign_description(desc)
+    desc ||= "No description."
     text = linkify(desc)
-    Haml::Filters::Markdown.render(text).html_safe
+    BlueCloth.new(text).to_html.html_safe
   end
 
 end
