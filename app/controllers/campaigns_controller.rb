@@ -22,7 +22,7 @@ class CampaignsController < ApplicationController
   end
 
   def index
-    @campaigns = Campaign.with_permission_to(:read)
+    @campaigns = Campaign.with_permissions_to(:read)
   end
 
   def update

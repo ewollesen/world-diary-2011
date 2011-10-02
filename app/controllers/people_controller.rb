@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :new, :update,]
-
+  before_filter :require_current_campaign, :except => [:edit, :show,]
 
   def create
     @person = current_campaign.people.build(params[:person])
@@ -25,7 +25,8 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @person = current_campaign.people.find(params[:id])
+    @person = Person.find(params[:id])
+    self.current_campaign = @person.campaign
     @person.uploads.build
   end
 
@@ -40,7 +41,7 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    set_current_campaign(@person.campaign)
+    self.current_campaign = @person.campaign
   end
 
   def update
@@ -53,6 +54,5 @@ class PeopleController < ApplicationController
       render :action => "edit"
     end
   end
-
 
 end
