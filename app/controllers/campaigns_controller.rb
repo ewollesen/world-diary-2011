@@ -25,6 +25,12 @@ class CampaignsController < ApplicationController
     @campaigns = Campaign.with_permissions_to(:read)
   end
 
+  def show
+    @recent_people = @campaign.people
+      .with_permissions_to(:read)
+      .recently_updated
+  end
+
   def update
     if @campaign.update_attributes(params[:campaign])
       flash["notice"] = "Campaign updated successfully"

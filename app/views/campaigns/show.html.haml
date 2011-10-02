@@ -2,29 +2,11 @@
 
 %h1= @campaign.name
 
-:markdown
-  #{linkify(@campaign.description)}
+= campaign_description(@campaign)
 
-%h2 People
-
-%table
-  %thead
-    %tr
-      %th.num
-      %th Name
-      %th Last updated
-  %tbody
-    - @campaign.people.recently_updated.each_with_index do |person, idx|
-      %tr{:class => cycle("odd", "even")}
-        %td.num
-          = succeed(".") do
-            = 1 + idx
-        %td= link_to(person.name, person)
-        %td= person.updated_at.to_s(:short)
-
-%p
-  = link_to(people_path) do
-    See all #{pluralize(@campaign.people.count, "person")}.
+%ul.menu
+  %li
+    = link_to("People", people_path)
 
 .actions
   .left

@@ -2,24 +2,26 @@
   %p
     = f.label("name")
     %br
-    = f.text_field("name", :class => "title")
+    = f.text_field("name")
   %p
     = f.label("description")
     %br
-    = f.text_area("description", :class => "text")
+    = f.text_area("description")
+  %p
+    = f.label("private")
+    = f.check_box("private")
   %fieldset
     %legend Uploads
     .wrap
       = f.fields_for("uploads", @person.uploads) do |ff|
         - if ff.object.new_record?
           %p
-            .spacer
-              = image_tag("fallback/thumb_default.png", :size => "110x110")
+            = ff.label("upload", image_tag("fallback/thumb_default.png", :size => "110x110"))
             = ff.label("upload", "Upload an image or other file")
             %br
             = ff.file_field("upload")
             %br
-            = ff.label("caption")
+            = ff.label("caption", nil)
             = ff.text_field("caption")
         - else
           %p

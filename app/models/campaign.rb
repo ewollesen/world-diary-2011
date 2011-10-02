@@ -16,4 +16,5 @@ class Campaign < ActiveRecord::Base
   def self.recently_updated(num=5)
     order("updated_at DESC").limit(num)
   end
+
 end

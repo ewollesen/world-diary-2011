@@ -9,7 +9,9 @@
   %tbody
     - @campaigns.each do |campaign|
       %tr{:class => cycle("odd", "even")}
-        %td= link_to(campaign.name, campaign)
+        %td
+          = link_to(campaign.name, campaign)
+          = private_icon(campaign)
         %td= campaign.dm_name
 
 .actions

@@ -5,7 +5,9 @@
   %li= link_to("People", people_path)
   %li= @person.name
 
-%h1= @person.name
+%h1
+  = @person.name
+  = private_icon(@person)
 
 :markdown
   #{linkify(@person.description)}

@@ -16,7 +16,7 @@ class Person < ActiveRecord::Base
 
 
   def self.recently_updated(num=5)
-    order("created_at DESC").limit(num)
+    order("people.created_at DESC").limit(num)
   end
 
 end

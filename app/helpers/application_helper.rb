@@ -58,10 +58,13 @@ module ApplicationHelper
     end.join.html_safe
   end
 
-  def table_index_link(total, shown, path)
-    if total > shown
-      link_to("…#{total - shown} more".html_safe, path)
-    end
+  def private_icon(object)
+    return unless object.private
+    image_tag("lock.png", alt: "Closed padlock", title: "Private")
+  end
+
+  def see_all_link(scope, term)
+    "See all #{pluralize(scope.with_permissions_to(:read).count, term)}.".html_safe
   end
 
 

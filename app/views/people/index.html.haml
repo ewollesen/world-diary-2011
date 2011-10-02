@@ -18,7 +18,9 @@
         %td.num
           = succeed(".") do
             = 1 + idx
-        %td= link_to(person.name, person)
+        %td
+          = link_to(person.name, person)
+          = private_icon(person)
 
 .actions
   .left

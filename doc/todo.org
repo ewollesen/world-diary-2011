@@ -3,6 +3,9 @@
 * DONE private campaigns
 * DONE private people
 * DONE authorization
+* DONE indicate when a person is private
+* DONE indicate when a campaign is private
+* TODO private uploads
 * TODO veil pass
 * DONE flash styling
 * TODO versioning

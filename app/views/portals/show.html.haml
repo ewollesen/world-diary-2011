@@ -18,10 +18,12 @@
         %td.num
           = succeed(".") do
             = 1 + idx
-        %td= link_to(campaign.name, campaign)
+        %td
+          = link_to(campaign.name, campaign)
+          = private_icon(campaign)
         %td= campaign.dm_name
         %td= campaign.updated_at.to_s(:short)
 
 %p
-  = link_to(people_path) do
-    See all #{pluralize(@campaigns.count, "campaign")}.
+  = link_to(campaigns_path) do
+    = see_all_link(@campaigns, "campaign")
