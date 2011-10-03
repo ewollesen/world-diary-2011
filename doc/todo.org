@@ -21,3 +21,4 @@
 * TODO make sure that the current user is authorized to create veil passes for the indicated person
 * TODO come up with a system better than the @person.uploads.build that litters the people_controller
 * TODO people#show is getting unwiedly, consdier breaking out some partials.
+* TODO first user created should be automatically marked as an admin
