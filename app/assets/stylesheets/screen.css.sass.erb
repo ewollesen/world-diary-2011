@@ -89,6 +89,9 @@ form
       +last
       margin-right: 10px
 
+      &.inline
+        float: none
+
   img
     display: block
 
@@ -98,6 +101,16 @@ form
 p
   +leader(1)
   +trailer(1)
+
+q
+  &:before
+    content: '“'
+
+  &:after
+    content: '”'
+
+td.center
+  text-align: center
 
 strong
   font:
@@ -164,6 +177,11 @@ table
     display: block
     position: absolute
     right: 0
+
+.veil_pass_description
+  +adjust-font-size-to(13px)
+  +rhythm-borders(0px, 0.5)
+  background-color: #ddd
 
 
 #content

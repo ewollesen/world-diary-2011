@@ -19,6 +19,10 @@ authorization do
   role :user do
     includes :guest
 
+    has_permission_on :people, :to => :read do
+      if_attribute :id => is_in {user.person_veil_passes.people_ids}
+    end
+
     has_permission_on :campaigns, :to => :create
     has_permission_on :campaigns, :to => :manage do
       if_attribute :dm => is {user}
@@ -31,6 +35,11 @@ authorization do
 
     has_permission_on :person_uploads, :to => :create
     has_permission_on :person_uploads, :to => :read do
+      if_permitted_to :manage, :person
+      if_attribute :person_id => is_in {user.person_veil_passes.including_uploads.people_ids}
+    end
+
+    has_permission_on :person_veil_passes, :to => :manage do
       if_permitted_to :manage, :person
     end
   end

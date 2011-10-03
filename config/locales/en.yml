@@ -9,3 +9,11 @@ en:
     submit:
       create: "Create %{model}"
       update: "Save"
+
+  activerecord:
+    errors:
+      models:
+        person_veil_pass:
+          attributes:
+            user_id:
+              taken: "already has a veil pass for this person"

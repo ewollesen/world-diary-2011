@@ -8,8 +8,8 @@
     = f.text_area("description")
     = f.error_message_on("description")
   .field
-    = f.label("private", nil, class: "inline")
     = f.check_box("private")
+    = f.label("private", nil, class: "inline")
     = f.error_message_on("private")
   %fieldset
     %legend Uploads
@@ -28,8 +28,8 @@
             = ff.text_field("caption")
             = ff.error_message_on("caption")
             %br
-            = ff.label("private")
             = ff.check_box("private")
+            = ff.label("private", nil, class: "inline")
             = ff.error_message_on("private")
         - else
           .field
@@ -45,13 +45,37 @@
             = ff.text_field("caption")
             = ff.error_message_on("caption")
             %br
-            = ff.label("private")
             = ff.check_box("private")
+            = ff.label("private", nil, class: "inline")
             = ff.error_message_on("private")
             %br
-            = ff.label("_destroy", "Delete", class: "inline")
             = ff.check_box("_destroy")
+            = ff.label("_destroy", "Delete", class: "inline")
             = ff.error_message_on("_destroy")
+
+  %fieldset
+    %legend Veil Passes
+    .wrap
+      %table{cellpadding: 0, cellspacing: 0}
+        %thead
+          %tr
+            %th User
+            %th Includes Uploads
+            %th Delete
+        %tbody
+          = f.fields_for("veil_passes", @person.veil_passes) do |ff|
+            %tr
+              %td
+                = ff.hidden_field("person_id")
+                = ff.collection_select("user_id", User.order("users.name").all - [current_user], :id, :name, ff.object.errors.present? ? {:include_blank => true} : {:prompt => true})
+                = ff.error_message_on("user_id")
+              %td.center
+                = ff.check_box("includes_uploads")
+                = ff.error_message_on("includes_uploads")
+              %td.center
+                - if ff.object.persisted?
+                  = ff.check_box("_destroy")
+                  = ff.error_message_on("_destroy")
 
   .actions
     .left

@@ -22,6 +22,7 @@ class PeopleController < ApplicationController
       redirect_to @person
     else
       @person.uploads.build
+      @person.veil_passes.build
       render :action => "new"
     end
   end
@@ -38,6 +39,7 @@ class PeopleController < ApplicationController
   def edit
     self.current_campaign = @person.campaign
     @person.uploads.build
+    @person.veil_passes.build
   end
 
   def index
@@ -46,6 +48,7 @@ class PeopleController < ApplicationController
 
   def new
     @person.uploads.build
+    @person.veil_passes.build
   end
 
   def show
@@ -58,6 +61,7 @@ class PeopleController < ApplicationController
       redirect_to @person
     else
       @person.uploads.build
+      @person.veil_passes.build
       render :action => "edit"
     end
   end

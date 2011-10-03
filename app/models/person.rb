@@ -4,6 +4,14 @@ class Person < ActiveRecord::Base
     :class_name => "PersonUpload",
     :dependent => :destroy,
     :inverse_of => :person
+  has_many :veil_passes,
+    :class_name => "PersonVeilPass",
+    :dependent => :destroy,
+    :inverse_of => :person do
+    def users_ids
+      all.map(&:user_id)
+    end
+  end
 
   validates :name, :presence => true, :uniqueness => {:scope => :campaign_id}
   validates :campaign, :presence => true
@@ -11,8 +19,15 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :uploads,
     :allow_destroy => true,
     :reject_if => proc {|attr| attr["id"].blank? && attr["caption"].blank? && attr["upload"].blank?}
+  accepts_nested_attributes_for :veil_passes,
+    :allow_destroy => true,
+    :reject_if => proc {|attr| attr["id"].blank? && (attr["person_id"].blank? || attr["user_id"].blank?)}
 
-  attr_accessible :name, :description, :private, :uploads_attributes
+  attr_accessible :name,
+                  :description,
+                  :private,
+                  :uploads_attributes,
+                  :veil_passes_attributes
 
   has_paper_trail :on => [:update,]
 

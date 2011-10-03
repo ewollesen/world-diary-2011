@@ -6,7 +6,9 @@ Wd::Application.routes.draw do
     get "revisions", :on => :member
   end
   resources :person_uploads
+  resources :person_veil_passes, :only => [:create, :destroy, :update,]
   resources :campaigns
+
   resource :portal, :only => [:show]
 
   root :to => "portals#show"
