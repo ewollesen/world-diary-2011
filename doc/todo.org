@@ -12,7 +12,7 @@
 * DONE admin role
 * DONE versioning
 * DONE diffs
-* TODO better close icon in flash (it's from mildred)
+* DONE better close icon in flash (it's from mildred)
 * TODO veil passes
 * TODO search
 * TODO diffs don't seem to show lines added in the middle correctly
