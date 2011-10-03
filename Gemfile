@@ -22,6 +22,8 @@ gem "rmagick", :require => "RMagick"
 gem "sassy-buttons"
 gem "declarative_authorization"
 gem "dynamic_form"
+gem "paper_trail", "~> 2"
+gem "diff-lcs", :require => "diff/lcs"
 
 group :test, :development do
   gem "ruby-debug19", :require => "ruby-debug"

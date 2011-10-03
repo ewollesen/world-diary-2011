@@ -108,6 +108,8 @@ GEM
     multi_json (1.0.3)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
+    paper_trail (2.4.0)
+      rails (~> 3)
     pg (0.11.0)
     polyglot (0.3.2)
     pry (0.9.6.2)
@@ -219,6 +221,7 @@ DEPENDENCIES
   compass (~> 0.12.alpha)
   declarative_authorization
   devise
+  diff-lcs
   dynamic_form
   factory_girl_rails
   faker
@@ -226,6 +229,7 @@ DEPENDENCIES
   hpricot
   jquery-rails
   launchy
+  paper_trail (~> 2)
   pg
   pry
   rails (= 3.1.0)

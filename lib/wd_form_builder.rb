@@ -24,6 +24,12 @@ module ActionView
         def error_messages(options = {})
           @template.error_messages_for(@object_name, objectify_options(options))
         end
+
+        def revision_picker(name, options={})
+          values = @template.options_for_select(object.versions.count.downto(1),
+                                                options.delete(:selected))
+          @template.select_tag(:"rev_#{name}", values, options)
+        end
       end
     end
 

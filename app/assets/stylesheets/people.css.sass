@@ -15,3 +15,35 @@
     p
       +leader(0)
       +trailer(0)
+
+
+.changes
+  $light_green: #a0f0a0
+  $light_yellow: #f0f0a0
+  $light_red: #f0a0a0
+
+  .left
+    +column(9)
+    +adjust-font-size-to(13px)
+
+  .right
+    +column(9, last)
+    +adjust-font-size-to(13px)
+
+  ins
+    background-color: $light_green
+    display: block
+    text-decoration: none
+
+  del
+    background-color: $light_red
+    display: block
+    text-decoration: none
+
+  .change
+    background-color: $light_yellow
+
+  .key
+    ins, del, .change
+      float: left
+      margin-right: 10px

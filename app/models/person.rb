@@ -14,6 +14,8 @@ class Person < ActiveRecord::Base
 
   attr_accessible :name, :description, :private, :uploads_attributes
 
+  has_paper_trail :on => [:update,]
+
 
   def self.recently_updated(num=5)
     order("people.created_at DESC").limit(num)

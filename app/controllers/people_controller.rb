@@ -1,8 +1,20 @@
 class PeopleController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :new, :update,]
+  before_filter :authenticate_user!, :only => [:create, :edit, :new, :update, :changes]
   before_filter :require_current_campaign, :except => [:edit, :show,]
-  filter_resource_access
+  filter_resource_access :additional_member => {:changes => :update}
 
+
+  def revisions
+    if params.include?(:rev_right) && params.include?(:rev_left)
+      @rev_left = @person.versions[params[:rev_left].to_i]
+      @rev_right = @person.versions[params[:rev_right].to_i]
+    else
+      @rev_left = @person.versions[-1]
+      @rev_right = nil
+    end
+    @person_left = @rev_left ? @person.versions[@rev_left.index].reify : @person
+    @person_right = @rev_right ? @person.versions[@rev_right.index].reify : @person
+  end
 
   def create
     if @person.save

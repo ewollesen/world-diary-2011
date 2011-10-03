@@ -1,0 +1,19 @@
+.changes
+
+  .left
+    %h2
+      %span (#{date_left})
+    .contents
+      %ol
+        = list_of(output_left) do |line|
+          = line
+
+  .right
+    %h2
+      %span (#{date_right})
+    .contents
+      %ol
+        = list_of(output_right) do |line|
+          = line
+
+  .clear

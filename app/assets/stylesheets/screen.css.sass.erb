@@ -19,9 +19,15 @@ em
 
 h1
   +adjust-font-size-to($base-font-size * 2)
+  clear: both
 
 h2
   +adjust-font-size-to($base-font-size * 1.333)
+  clear: both
+
+h3
+  +adjust-font-size-to($base-font-size * 1.1)
+  clear: both
 
 input
   margin: 2px 0
@@ -143,6 +149,9 @@ table
     +last
     a.delete
       +delete_button
+
+.clear
+  clear: both
 
 .overlay_container
   display: block

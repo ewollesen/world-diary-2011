@@ -1,0 +1,29 @@
+- title("Revisions")
+
+%h1
+  Revisions for #{@person.name}
+
+%ul.breadcrumbs
+  %li= link_to(current_campaign.name, current_campaign)
+  %li= link_to("People", people_path)
+  %li= link_to(@person.name, @person)
+  %li Revisions
+
+= show_changes(@person_left.description, @person_left.updated_at,
+               @person_right.description, @person_right.updated_at)
+
+%h3 Key
+.changes
+  .key
+    .change Line changed
+    %ins.insert Line inserted
+    %del.delete Line deleted
+  .clear
+
+%h2 Select Revisions
+= revisions_form_for(@person) do |f|
+  = f.revision_picker(:left, :selected => params[:rev_left] || (@rev_left.index - 1))
+  and
+  = f.revision_picker(:right, :selected => params[:rev_right])
+  = f.submit("View Changes")
+  = link_to("Back", @person)

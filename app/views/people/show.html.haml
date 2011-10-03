@@ -12,9 +12,19 @@
 :markdown
   #{linkify(@person.description)}
 
-.actions
-  .left
-    = edit_button(@person)
+- if permitted_to?(:edit, @person)
+  .actions
+    .left
+      = edit_button(@person)
+  .clear
+
+%p
+  Last updated #{@person.updated_at.to_s(:long)}
+  - if permitted_to?(:edit, @person)
+    %br
+    Revised #{pluralize(@person.versions.count, "time")}.
+    - if @person.versions.count > 0
+      = link_to("View revisions", revisions_person_path(@person))
 
 - if @person.uploads.with_permissions_to(:read)
   = content_for(:sidebar) do
