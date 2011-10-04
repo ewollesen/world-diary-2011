@@ -5,15 +5,12 @@ class PeopleController < ApplicationController
 
 
   def revisions
-    if params.include?(:rev_right) && params.include?(:rev_left)
-      @rev_left = @person.versions[params[:rev_left].to_i]
-      @rev_right = @person.versions[params[:rev_right].to_i]
-    else
-      @rev_left = @person.versions[-1]
-      @rev_right = nil
-    end
-    @person_left = @rev_left ? @person.versions[@rev_left.index].reify : @person
-    @person_right = @rev_right ? @person.versions[@rev_right.index].reify : @person
+    @rev_left = params[:rev_left].to_i - 1
+    @rev_right = params[:rev_right].to_i - 1
+    @ver_left = @person.versions[@rev_left]
+    @ver_right = @person.versions[@rev_right]
+    @person_left = @ver_left ? @ver_left.reify : @person
+    @person_right = @ver_right ? @ver_right.reify : @person
   end
 
   def create

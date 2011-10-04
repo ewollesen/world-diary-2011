@@ -22,8 +22,8 @@
 
 %h2 Select Revisions
 = revisions_form_for(@person) do |f|
-  = f.revision_picker(:left, :selected => params[:rev_left] || (@rev_left.index - 1))
+  = f.revision_picker(:left, :selected => @rev_left+1)
   and
-  = f.revision_picker(:right, :selected => params[:rev_right])
+  = f.revision_picker(:right, :selected => @rev_right+1)
   = f.submit("View Changes")
   = link_to("Back", @person)

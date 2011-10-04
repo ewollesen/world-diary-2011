@@ -2,7 +2,7 @@
 
   .left
     %h2
-      %span (#{date_left})
+      %span Rev #{@rev_left+1} (#{date_left})
     .contents
       %ol
         = list_of(output_left) do |line|
@@ -10,7 +10,7 @@
 
   .right
     %h2
-      %span (#{date_right})
+      %span Rev #{@rev_right+1} (#{date_right})
     .contents
       %ol
         = list_of(output_right) do |line|

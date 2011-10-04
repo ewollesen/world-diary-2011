@@ -26,7 +26,8 @@ module ActionView
         end
 
         def revision_picker(name, options={})
-          values = @template.options_for_select(object.versions.count.downto(1),
+          num_versions = object.versions.count
+          values = @template.options_for_select((num_versions + 1).downto(1),
                                                 options.delete(:selected))
           @template.select_tag(:"rev_#{name}", values, options)
         end
