@@ -14,11 +14,11 @@
 * DONE diffs
 * DONE better close icon in flash (it's from mildred)
 * DONE veil passes
-* TODO search
+* DONE first user created should be automatically marked as an admin
 * TODO diffs don't seem to show lines added in the middle correctly
-* TODO don't record a version for the private flag
-* TODO dm only text
 * TODO make sure that the current user is authorized to create veil passes for the indicated person
 * TODO come up with a system better than the @person.uploads.build that litters the people_controller
 * TODO people#show is getting unwiedly, consdier breaking out some partials.
-* TODO first user created should be automatically marked as an admin
+* TODO search
+* TODO don't record a version for the private flag
+* TODO dm only text

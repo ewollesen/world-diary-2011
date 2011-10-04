@@ -10,14 +10,10 @@ def lorem(paragraphs=3)
   Faker::Lorem.paragraphs(paragraphs).join("\n\n")
 end
 
-admin = UserRole.create!(name: "admin")
-
 u = User.create!(name: "Eric W",
                  email: "ericw@xmtp.net",
                  password: "password",
                  password_confirmation: "password")
-u.role = admin
-u.save!
 
 gygax = User.create!(name: "Gary G",
                  email: "gygax@example.com",

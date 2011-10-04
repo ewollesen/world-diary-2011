@@ -47,6 +47,7 @@ describe CampaignsController do
       end
 
       it "redirects unauthorized users to the home page" do
+        private_campaign # creates dm as the first (admin) user
         sign_in user
         get :show, :id => private_campaign.id
 

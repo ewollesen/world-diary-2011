@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   validates :name, :presence => true, :uniqueness => true
 
+  after_create :make_admin_if_only
+
 
   def role_symbols
     role ? role.symbols : [:user]
@@ -27,5 +29,15 @@ class User < ActiveRecord::Base
 
   def has_veil_pass_for?(object)
     object.veil_passes.users_ids.include?(id)
+  end
+
+
+  private
+
+  def make_admin_if_only
+    if 1 == User.count
+      self.role = UserRole.find_or_create_by_name("admin")
+      save
+    end
   end
 end
