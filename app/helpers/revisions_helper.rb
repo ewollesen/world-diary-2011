@@ -9,7 +9,7 @@ module RevisionsHelper
 
   def show_changes(text_left, date_left, text_right, date_right)
     output_left, output_right = [], []
-    changes = Diff::LCS.sdiff(text_left.split("\n"), text_right.split("\n"))
+    changes = Diff::LCS.sdiff(text_left.split(/\r*\n/), text_right.split(/\r*\n/))
     changes.each do |change|
       left_element = change.old_element.blank? ? " ".html_safe : change.old_element
       right_element = change.new_element.blank? ? " ".html_safe : change.new_element
