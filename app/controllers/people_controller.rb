@@ -18,8 +18,6 @@ class PeopleController < ApplicationController
       flash[:notice] = "Person created successfully"
       redirect_to @person
     else
-      @person.uploads.build
-      @person.veil_passes.build
       render :action => "new"
     end
   end
@@ -33,21 +31,8 @@ class PeopleController < ApplicationController
     redirect_to people_path
   end
 
-  def edit
-    @person.uploads.build
-    @person.veil_passes.build
-  end
-
   def index
     @people = current_campaign.people.with_permissions_to(:read)
-  end
-
-  def new
-    @person.uploads.build
-    @person.veil_passes.build
-  end
-
-  def show
   end
 
   def update
@@ -55,8 +40,6 @@ class PeopleController < ApplicationController
       flash[:notice] = "Person updated successfully"
       redirect_to @person
     else
-      @person.uploads.build
-      @person.veil_passes.build
       render :action => "edit"
     end
   end

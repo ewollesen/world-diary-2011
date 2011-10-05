@@ -18,7 +18,7 @@ class Person < ActiveRecord::Base
 
   accepts_nested_attributes_for :uploads,
     :allow_destroy => true,
-    :reject_if => proc {|attr| attr["id"].blank? && attr["caption"].blank? && attr["upload"].blank?}
+    :reject_if => proc {|attr| attr["id"].blank? && attr["upload"].blank? && attr["upload_cache"].blank?}
   accepts_nested_attributes_for :veil_passes,
     :allow_destroy => true,
     :reject_if => proc {|attr| attr["id"].blank? && (attr["person_id"].blank? || attr["user_id"].blank?)}

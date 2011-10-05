@@ -1,0 +1,24 @@
+.field
+  - if ff.object.persisted?
+    = ff.label("_destroy", image_tag(upload.thumb.display_url, size: "110x110"))
+    = File.basename(upload.url)
+  - else
+    = ff.hidden_field("upload_cache")
+    = ff.label("upload", image_tag(upload.thumb.display_url, size: "110x110"))
+    = ff.label("upload", "Upload an image or other file")
+    %br
+    = ff.file_field("upload")
+    = ff.error_message_on("upload")
+  %br
+  = ff.label("caption")
+  = ff.text_field("caption")
+  = ff.error_message_on("caption")
+  %br
+  = ff.check_box("private")
+  = ff.label("private", nil, class: "inline")
+  = ff.error_message_on("private")
+  - if ff.object.persisted?
+    %br
+    = ff.check_box("_destroy")
+    = ff.label("_destroy", "Delete", class: "inline")
+    = ff.error_message_on("_destroy")

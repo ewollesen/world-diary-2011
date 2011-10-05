@@ -14,44 +14,9 @@
   %fieldset
     %legend Uploads
     .wrap
-      = f.fields_for("uploads", @person.uploads) do |ff|
-        - if ff.object.new_record?
-          .field
-            = ff.hidden_field("upload_cache")
-            = ff.label("upload", image_tag("fallback/thumb_default.png", :size => "110x110"))
-            = ff.label("upload", "Upload an image or other file")
-            %br
-            = ff.file_field("upload")
-            = ff.error_message_on("upload")
-            %br
-            = ff.label("caption")
-            = ff.text_field("caption")
-            = ff.error_message_on("caption")
-            %br
-            = ff.check_box("private")
-            = ff.label("private", nil, class: "inline")
-            = ff.error_message_on("private")
-        - else
-          .field
-            - if ff.object.upload.image?(ff.object.upload.url)
-              = ff.label("_destroy",
-                         image_tag(ff.object.upload.thumb.url, :size => "110x110"))
-            - else
-              = ff.label("_destroy",
-                         image_tag(ff.object.upload.thumb.default_url, :size => "110x110"))
-            = File.basename(ff.object.upload.url)
-            %br
-            = ff.label("caption")
-            = ff.text_field("caption")
-            = ff.error_message_on("caption")
-            %br
-            = ff.check_box("private")
-            = ff.label("private", nil, class: "inline")
-            = ff.error_message_on("private")
-            %br
-            = ff.check_box("_destroy")
-            = ff.label("_destroy", "Delete", class: "inline")
-            = ff.error_message_on("_destroy")
+      = f.has_many_fields_for("uploads", @person.uploads) do |ff|
+        = render("upload", ff: ff, upload: ff.object)
+
 
   %fieldset
     %legend Veil Passes
@@ -63,19 +28,8 @@
             %th Includes Uploads
             %th Delete
         %tbody
-          = f.fields_for("veil_passes", @person.veil_passes) do |ff|
-            %tr
-              %td
-                = ff.hidden_field("person_id")
-                = ff.collection_select("user_id", User.order("users.name").all - [current_user], :id, :name, ff.object.errors.present? ? {:include_blank => true} : {:prompt => true})
-                = ff.error_message_on("user_id")
-              %td.center
-                = ff.check_box("includes_uploads")
-                = ff.error_message_on("includes_uploads")
-              %td.center
-                - if ff.object.persisted?
-                  = ff.check_box("_destroy")
-                  = ff.error_message_on("_destroy")
+          = f.has_many_fields_for("veil_passes", @person.veil_passes) do |ff|
+            = render("veil_pass", ff: ff, veil_pass: ff.object)
 
   .actions
     .left

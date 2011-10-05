@@ -1,0 +1,12 @@
+%tr
+  %td
+    = ff.hidden_field("person_id")
+    = ff.collection_select("user_id", User.order("users.name").all - [current_user], :id, :name, veil_pass.errors.present? ? {:include_blank => true} : {:prompt => true})
+    = ff.error_message_on("user_id")
+  %td.center
+    = ff.check_box("includes_uploads")
+    = ff.error_message_on("includes_uploads")
+  %td.center
+    - if veil_pass.persisted?
+      = ff.check_box("_destroy")
+      = ff.error_message_on("_destroy")

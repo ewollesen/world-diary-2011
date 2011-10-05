@@ -5,7 +5,7 @@ class PersonUpload < ActiveRecord::Base
 
   validates :person, :presence => true
 
-  attr_accessible :caption, :private, :upload
+  attr_accessible :caption, :private, :upload, :upload_cache
 
 
   def caption

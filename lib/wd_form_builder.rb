@@ -31,6 +31,12 @@ module ActionView
                                                 options.delete(:selected))
           @template.select_tag(:"rev_#{name}", values, options)
         end
+
+        def has_many_fields_for(rel_name, rel_objects=nil, &block)
+          objects = rel_objects || rel_name
+          objects.build unless objects.any?(&:new_record?)
+          fields_for(rel_name, rel_objects, &block)
+        end
       end
     end
 
