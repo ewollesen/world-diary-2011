@@ -6,24 +6,11 @@
   %li= @person.name
 
 %h1
-  = @person.name
-  = private_icon(@person)
+  = append_private_icon(@person, @person.name)
 
-:markdown
-  #{linkify(@person.description)}
+= markdown(linkify(@person.description))
 
-- if permitted_to?(:edit, @person) && @person.veil_passes.present?
-  %h2 Veil Passes
-  %table{cellpadding: 0, cellspacing: 0}
-    %thead
-      %tr
-        %th User
-        %th Includes Uploads
-    %tbody
-      - @person.veil_passes.each do |veil_pass|
-        %tr
-          %td= veil_pass.user_name
-          %td= veil_pass.includes_uploads
+= render("/shared/veil_passes", subject: @person)
 
 - if permitted_to?(:edit, @person)
   .actions
@@ -39,16 +26,16 @@
     - if @person.versions.count > 0
       = link_to("View revisions", revisions_person_path(@person))
 
-- if @person.private && current_user.has_veil_pass_for?(@person)
+- if visible_due_to_veil_pass?(@person)
   %p.veil_pass_description
     This page is private. You are able to view this page because
     #{current_campaign.dm_name} has issued you a Veil Pass.  This pass allows
     you to view information that is otherwise considered private.  <em>Be
     careful how you share this information with other players</em>.
 
-- if @person.uploads.with_permissions_to(:read)
+- if @person.visible_uploads.present?
   = content_for(:sidebar) do
-    - @person.uploads.with_permissions_to(:read).order("person_uploads.created_at").each do |upload|
+    - @person.visible_uploads.each do |upload|
       .upload
         = link_to(upload.url, class: "overlay_container") do
           = image_tag(upload.sidebar.display_url, :size => "230x230")

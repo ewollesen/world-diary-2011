@@ -32,15 +32,15 @@ module LinkHelper
   def class_info_from_name_or_abbreviation(name_or_abbreviation)
     case name_or_abbreviation
     when /^o/i
-      [@campaign.send("organizations"), "organization"]
+      [current_campaign.send("organizations"), "organization"]
     when /^pe/i
-      [@campaign.send("people"), "person"]
+      [current_campaign.send("people"), "person"]
     when /^pl/i
-      [@campaign.send("places"), "place"]
+      [current_campaign.send("places"), "place"]
     when /^t/i
-      [@campaign.send("things"), "thing"]
+      [current_campaign.send("things"), "thing"]
     else
-      [@campaign.send(name_or_abbreviation.pluralize.underscore),
+      [current_campaign.send(name_or_abbreviation.pluralize.underscore),
        name_or_abbreviation.underscore.downcase]
     end
   end

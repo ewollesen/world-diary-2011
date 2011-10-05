@@ -36,4 +36,8 @@ class Person < ActiveRecord::Base
     order("people.created_at DESC").limit(num)
   end
 
+
+  def visible_uploads
+    uploads.with_permissions_to(:read).order("person_uploads.created_at")
+  end
 end

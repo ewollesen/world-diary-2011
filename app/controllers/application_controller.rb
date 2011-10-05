@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_campaign
-    @campaign || Campaign.find_by_id(session["campaign_id"])
+    @campaign ||= Campaign.find_by_id(session["campaign_id"])
   end
   helper_method :current_campaign
 

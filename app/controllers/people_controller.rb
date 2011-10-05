@@ -34,7 +34,6 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    self.current_campaign = @person.campaign
     @person.uploads.build
     @person.veil_passes.build
   end
@@ -49,7 +48,6 @@ class PeopleController < ApplicationController
   end
 
   def show
-    self.current_campaign = @person.campaign
   end
 
   def update
@@ -67,8 +65,9 @@ class PeopleController < ApplicationController
   protected
 
   def load_person
-    if "show" == params[:action]
+    if ["edit", "show",].include?(params[:action])
       @person = Person.find(params[:id])
+      self.current_campaign = @person.campaign
     else
       @person = current_campaign.people.find(params[:id])
     end

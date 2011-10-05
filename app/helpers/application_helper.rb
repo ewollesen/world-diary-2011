@@ -58,9 +58,14 @@ module ApplicationHelper
     end.join.html_safe
   end
 
+  def append_private_icon(object, content, &block)
+    content = capture(&block) if block_given?
+    content.html_safe + " " + private_icon(object)
+  end
+
   def private_icon(object)
-    return unless object.private
-    image_tag("lock.png", alt: "Closed padlock", title: "Private")
+    return "" unless object.private
+    image_tag("lock.png", alt: "Closed padlock", title: "Private").html_safe
   end
 
   def private_upload_icon(object)
@@ -72,6 +77,13 @@ module ApplicationHelper
     "See all #{pluralize(scope.with_permissions_to(:read).count, term)}.".html_safe
   end
 
+  def markdown(text)
+    BlueCloth.new(text).to_html.html_safe
+  end
+
+  def visible_due_to_veil_pass?(subject)
+    subject.private && current_user.has_veil_pass_for?(subject)
+  end
 
   protected
 
