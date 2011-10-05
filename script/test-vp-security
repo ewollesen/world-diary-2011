@@ -1,0 +1,84 @@
+#!/bin/bash
+
+# This tests that the DM of one campaign, cannot create a veil pass which
+# allows him access to a player in another DM's campaign.
+#
+# The evil dm creates a campaign, and a person without that campaign.  They
+# then attempt to update that person, adding a veil pass that points its
+# person_id to a person in another DM's campaign.  We then check to see if the
+# evil DM's person has a veil pass. If it does, we assume that the test has
+# passed, and the evil DM has been thwarted.
+
+set -e
+
+COOKIE_JAR=/tmp/vp.cookies.txt
+TEMP_HTML=/tmp/vp.temp.html
+TIMESTAMP=`date +%s`
+TARGET_PERSON_ID=26
+EVIL_DM_ID=2
+
+trap "rm -f $COOKIE_JAR $TEMP_HTML" EXIT
+
+rm -f $COOKIE_JAR
+
+function get_csrf () {
+    cat $TEMP_HTML | \
+        grep csrf-token | \
+        sed -r -e 's/.*content="([^"]+).*/\1/'
+}
+
+function get_person_id () {
+    cat $TEMP_HTML | \
+        grep -E 'people/[0-9]+/edit' | \
+        sed -r -e 's%.*people/([0-9]+)/edit.*%\1%'
+}
+
+curl --silent \
+    --location \
+    --cookie-jar $COOKIE_JAR \
+    --cookie $COOKIE_JAR \
+    --form "user[email]=gygax@example.com" \
+    --form "user[password]=password" \
+    http://localhost:3012/users/log_in > $TEMP_HTML
+
+CSRF=$(get_csrf)
+
+curl --silent \
+    --location \
+    --cookie-jar $COOKIE_JAR \
+    --cookie $COOKIE_JAR \
+    --form "campaign[name]=VP_security_test_${TIMESTAMP}" \
+    --form "authenticity_token=$CSRF" \
+    http://localhost:3012/campaigns > $TEMP_HTML
+
+curl --silent \
+    --location \
+    --cookie-jar $COOKIE_JAR \
+    --cookie $COOKIE_JAR \
+    --form "person[name]=VP_security_test_${TIMESTAMP}" \
+    --form "authenticity_token=$CSRF" \
+    http://localhost:3012/people > $TEMP_HTML
+
+CSRF=$(get_csrf)
+PERSON_ID=$(get_person_id)
+
+curl --silent \
+    --location \
+    --cookie-jar $COOKIE_JAR \
+    --cookie $COOKIE_JAR \
+    --form "person[veil_passes_attributes[][person_id]]=${TARGET_PERSON_ID}" \
+    --form "person[veil_passes_attributes[][user_id]]=${EVIL_DM_ID}" \
+    --form "_method=PUT" \
+    --form "authenticity_token=$CSRF" \
+    http://localhost:3012/people/${PERSON_ID} > $TEMP_HTML
+
+
+grep -q "<h2>Veil Passes</h2>" $TEMP_HTML
+
+if [ 0 = $? ]; then
+    echo Evil DM is thwarted.  Veil pass assignment is secure.
+    exit 0
+else
+    echo 'Evil DM triumphs! Veil pass assignment is NOT secure!'
+    exit 1
+fi

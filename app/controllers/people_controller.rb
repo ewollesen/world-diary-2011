@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :new, :update, :changes]
-  before_filter :require_current_campaign, :except => [:edit, :show,]
+  before_filter :require_current_campaign, :except => [:edit, :show, :update,]
   filter_resource_access :additional_member => {:changes => :update}
 
 
@@ -65,7 +65,7 @@ class PeopleController < ApplicationController
   protected
 
   def load_person
-    if ["edit", "show",].include?(params[:action])
+    if ["edit", "show", "update",].include?(params[:action])
       @person = Person.find(params[:id])
       self.current_campaign = @person.campaign
     else
