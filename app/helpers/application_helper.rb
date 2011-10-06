@@ -78,7 +78,9 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    BlueCloth.new(text).to_html.html_safe
+    @renderer ||= Redcarpet::Render::XHTML.new(with_toc_data: true)
+    @markdown ||= Redcarpet::Markdown.new(@renderer, tables: true)
+    @markdown.render(h(text)).html_safe
   end
 
   def visible_due_to_veil_pass?(subject)

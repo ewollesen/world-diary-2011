@@ -34,7 +34,6 @@ GEM
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
-    bluecloth (2.1.0)
     builder (3.0.0)
     capybara (1.1.1)
       mime-types (>= 1.16)
@@ -145,6 +144,7 @@ GEM
       thor (~> 0.14.6)
     rake (0.9.2)
     rdoc (3.9.4)
+    redcarpet (2.0.0b5)
     rmagick (2.13.1)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
@@ -215,7 +215,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bluecloth
   carrierwave
   coffee-rails (~> 3.1.0)
   compass (~> 0.12.alpha)
@@ -234,6 +233,7 @@ DEPENDENCIES
   pry
   rails (= 3.1.0)
   rails3-generators
+  redcarpet (= 2.0.0b5)
   rmagick
   rspec-rails
   ruby-debug19
