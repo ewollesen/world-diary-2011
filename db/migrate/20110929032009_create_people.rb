@@ -4,7 +4,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :name
       t.references :campaign
       t.text :description
-      t.boolean :private, :default => false, :null => false
+      t.boolean :private, :default => true, :null => false
 
       t.timestamps
     end
