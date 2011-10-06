@@ -29,7 +29,7 @@ class Person < ActiveRecord::Base
                   :uploads_attributes,
                   :veil_passes_attributes
 
-  has_paper_trail :on => [:update,]
+  has_paper_trail :on => [:update,], :ignore => [:private,]
 
 
   def self.recently_updated(num=5)

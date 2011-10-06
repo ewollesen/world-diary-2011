@@ -19,7 +19,7 @@
 * DONE revision pickers don't list both revisions when there is only one
 * DONE people#show is getting unwiedly, consdier breaking out some partials.
 * DONE make sure that the current user is authorized to create veil passes for the indicated person
-* TODO come up with a system better than the @person.uploads.build that litters the people_controller
+* DONE come up with a system better than the @person.uploads.build that litters the people_controller
+* DONE don't record a version for the private flag
 * TODO search
-* TODO don't record a version for the private flag
 * TODO dm only text
