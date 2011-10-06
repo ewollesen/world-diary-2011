@@ -4,6 +4,7 @@ defaults: &defaults
   pool: 5
   username: wd
   min_messages: warning
+  port: 5433
 
 development:
   database: wd_development

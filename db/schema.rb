@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111003032311) do
+ActiveRecord::Schema.define(:version => 20111006040606) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
     t.integer  "dm_id"
     t.text     "description"
-    t.boolean  "private",     :default => false, :null => false
+    t.boolean  "private",     :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20111003032311) do
     t.string   "name"
     t.integer  "campaign_id"
     t.text     "description"
-    t.boolean  "private",     :default => false, :null => false
+    t.boolean  "private",     :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(:version => 20111003032311) do
 
   add_index "person_veil_passes", ["person_id"], :name => "index_person_veil_passes_on_person_id"
   add_index "person_veil_passes", ["user_id"], :name => "index_person_veil_passes_on_user_id"
+
+  create_table "pg_search_documents", :force => true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_roles", :force => true do |t|
     t.string   "name"

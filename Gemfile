@@ -24,6 +24,7 @@ gem "declarative_authorization"
 gem "dynamic_form"
 gem "paper_trail", "~> 2"
 gem "diff-lcs", :require => "diff/lcs"
+gem "pg_search"
 
 group :test, :development do
   gem "ruby-debug19", :require => "ruby-debug"

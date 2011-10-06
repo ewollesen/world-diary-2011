@@ -1,4 +1,6 @@
 class Person < ActiveRecord::Base
+  include PgSearch
+
   belongs_to :campaign, :inverse_of => :people, :touch => true
   has_many :uploads,
     :class_name => "PersonUpload",
@@ -12,6 +14,19 @@ class Person < ActiveRecord::Base
       all.map(&:user_id)
     end
   end
+
+  multisearchable :against => [:name, :description,],
+                  :using => {
+                    :tsearch => {:prefix => true},
+                  }
+
+
+  pg_search_scope :full_search, :against => {:name => "A", :description => "B"},
+                  :using => {
+                    :tsearch => {:prefix => true, :normalization => 2},
+                  }
+
+
 
   validates :name, :presence => true, :uniqueness => {:scope => :campaign_id}
   validates :campaign, :presence => true

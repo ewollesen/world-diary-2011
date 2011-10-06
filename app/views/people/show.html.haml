@@ -6,9 +6,9 @@
   %li= @person.name
 
 %h1
-  = append_private_icon(@person, @person.name)
+  = append_private_icon(@person, highlight(@person.name, params[:q]))
 
-= markdown(linkify(@person.description))
+= highlight(markdown(linkify(@person.description)), params[:q])
 
 = render("/shared/veil_passes", subject: @person)
 

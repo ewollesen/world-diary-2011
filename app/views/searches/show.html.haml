@@ -1,0 +1,17 @@
+%h1 Search
+
+- if @results.present?
+  %h2 Results for <q>#{params[:q]}</q>:
+  - if Search::MAX_RESULTS == @results.size
+    %h3 Showing the top #{pluralize(@results.size, "result")}
+  %ol
+    = list_of(@results) do |result|
+      = link_to(result.name, polymorphic_path(result, q: params[:q]))
+- elsif params.include?(:q)
+  %em No results found for <q>#{params[:q]}</q>.
+- else
+  %p
+    = form_tag(nil, :method => :get) do
+      = search_field_tag("q")
+      = submit_tag("Search")
+
