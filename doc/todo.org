@@ -21,6 +21,6 @@
 * DONE make sure that the current user is authorized to create veil passes for the indicated person
 * DONE come up with a system better than the @person.uploads.build that litters the people_controller
 * DONE don't record a version for the private flag
-* TODO default campaigns and people to private
+* DONE default campaigns and people to private
 * TODO search
 * TODO dm only text

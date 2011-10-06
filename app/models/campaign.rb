@@ -1,9 +1,16 @@
 class Campaign < ActiveRecord::Base
+  include PgSearch
+
   belongs_to :dm,
     :class_name => "User",
     :foreign_key => "dm_id",
     :inverse_of => :campaigns
   has_many :people, :inverse_of => :campaign, :dependent => :destroy
+
+  multisearchable :against => [:name, :description,],
+                  :using => {
+                    :tsearch => {:prefix => true},
+                  }
 
   validates :name, :presence => true, :uniqueness => {:scope => :dm_id}
   validates :dm, :presence => true

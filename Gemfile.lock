@@ -110,6 +110,9 @@ GEM
     paper_trail (2.4.0)
       rails (~> 3)
     pg (0.11.0)
+    pg_search (0.3.1)
+      activerecord (>= 3)
+      activesupport (>= 3)
     polyglot (0.3.2)
     pry (0.9.6.2)
       coderay (~> 0.9.8)
@@ -230,6 +233,7 @@ DEPENDENCIES
   launchy
   paper_trail (~> 2)
   pg
+  pg_search
   pry
   rails (= 3.1.0)
   rails3-generators
