@@ -19,6 +19,20 @@ class Campaign < ActiveRecord::Base
     order("updated_at DESC").limit(num)
   end
 
+  def organizations
+    # placeholder
+    Campaign.scoped
+  end
+
+  def places
+    # placeholder
+    Campaign.scoped
+  end
+
+  def things
+    # placeholder
+    Campaign.scoped
+  end
 
   def visible_people
     people.with_permissions_to(:read)

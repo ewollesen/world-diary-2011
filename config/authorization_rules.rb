@@ -34,11 +34,13 @@ authorization do
     end
 
     has_permission_on :person_uploads, :to => :create
+    has_permission_on :person_uploads, :to => :read, :join_by => :and do
+      if_attribute :person_id => is_in {user.person_veil_passes.people_ids}
+      if_attribute :visible_with_vp => is {true}
+    end
     has_permission_on :person_uploads, :to => :read do
       if_permitted_to :manage, :person
-      if_attribute :person_id => is_in {user.person_veil_passes.including_uploads.people_ids}
     end
-
     has_permission_on :person_veil_passes, :to => :manage do
       if_permitted_to :manage, :person
     end

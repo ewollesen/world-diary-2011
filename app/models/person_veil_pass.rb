@@ -6,12 +6,7 @@ class PersonVeilPass < ActiveRecord::Base
   validates :person, :presence => true
   validates :user_id, :uniqueness => {:scope => :person_id}
 
-  attr_accessible :person_id, :user_id, :includes_uploads
+  attr_accessible :person_id, :user_id
 
   delegate :name, :to => :user, :prefix => true
-
-
-  def self.including_uploads
-    where(:includes_uploads => true)
-  end
 end

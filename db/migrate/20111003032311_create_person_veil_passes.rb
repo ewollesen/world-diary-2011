@@ -3,7 +3,6 @@ class CreatePersonVeilPasses < ActiveRecord::Migration
     create_table :person_veil_passes do |t|
       t.references :person, :null => false
       t.references :user, :null => false
-      t.boolean :includes_uploads, :default => true, :null => false
 
       t.timestamps
     end

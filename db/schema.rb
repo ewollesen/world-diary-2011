@@ -37,10 +37,11 @@ ActiveRecord::Schema.define(:version => 20111006040606) do
   add_index "people", ["campaign_id"], :name => "index_people_on_campaign_id"
 
   create_table "person_uploads", :force => true do |t|
-    t.string   "upload",                        :null => false
+    t.string   "upload",                             :null => false
     t.string   "caption"
-    t.integer  "person_id",                     :null => false
-    t.boolean  "private",    :default => false, :null => false
+    t.integer  "person_id",                          :null => false
+    t.boolean  "private",         :default => true,  :null => false
+    t.boolean  "visible_with_vp", :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,9 +49,8 @@ ActiveRecord::Schema.define(:version => 20111006040606) do
   add_index "person_uploads", ["person_id"], :name => "index_person_uploads_on_person_id"
 
   create_table "person_veil_passes", :force => true do |t|
-    t.integer  "person_id",                          :null => false
-    t.integer  "user_id",                            :null => false
-    t.boolean  "includes_uploads", :default => true, :null => false
+    t.integer  "person_id",  :null => false
+    t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

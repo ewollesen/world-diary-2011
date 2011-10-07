@@ -25,11 +25,10 @@
         %thead
           %tr
             %th User
-            %th Includes Uploads
             %th Delete
         %tbody
           = f.has_many_fields_for("veil_passes", @person.veil_passes) do |ff|
-            = render("veil_pass", ff: ff, veil_pass: ff.object)
+            = render("/shared/veil_pass_form", ff: ff, veil_pass: ff.object)
 
   .actions
     .left

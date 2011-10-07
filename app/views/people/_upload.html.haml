@@ -17,6 +17,10 @@
   = ff.check_box("private")
   = ff.label("private", nil, class: "inline")
   = ff.error_message_on("private")
+  %br
+  = ff.check_box("visible_with_vp")
+  = ff.label("visible_with_vp", "Visible with Veil Pass", class: "inline")
+  = ff.error_message_on("visible_with_vp")
   - if ff.object.persisted?
     %br
     = ff.check_box("_destroy")

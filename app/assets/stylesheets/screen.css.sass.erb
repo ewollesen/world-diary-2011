@@ -174,14 +174,11 @@ ul
   clear: both
 
 span.dm
-  background-color: #bfb
+  background-color: $dm_bg_color
 
 p.dm
   +rhythm(-0.5, 0.5, 0.5, -0.5, 16px)
-  background-color: #bfb
-
-.excerpt
-  +adjust-font-size-to(13px)
+  background-color: $dm_bg_color
 
 .highlight
   background-color: yellow
@@ -213,16 +210,15 @@ p.dm
       padding-left: 2em
 
 .veil_pass_description
-  +adjust-font-size-to(13px)
   +rhythm-borders(0px, 0.5)
-  background-color: #ddd
+  background-color: $vp_bg_color
 
 span.vp
-  background-color: #fbf
+  background-color: $vp_bg_color
 
 p.vp
   +rhythm(-0.5, 0.5, 0.5, -0.5, 16px)
-  background-color: #fbf
+  background-color: $vp_bg_color
 
 body.searches
   dt

@@ -42,7 +42,7 @@
 = content_for(:sidebar) do
   - if @person.visible_uploads.present?
     - @person.visible_uploads.each do |upload|
-      .upload
+      .upload{class: class_for_upload(upload)}
         = link_to(upload.url, class: "overlay_container") do
           = image_tag(upload.sidebar.display_url, :size => "230x230")
           = private_upload_icon(upload)

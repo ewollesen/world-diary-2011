@@ -33,12 +33,15 @@ module LinkHelper
     case name_or_abbreviation
     when /^o/i
       [current_campaign.send("organizations"), "organization"]
+      [Campaign.scoped, "person"] # placeholder
     when /^pe/i
       [current_campaign.send("people"), "person"]
     when /^pl/i
       [current_campaign.send("places"), "place"]
+      [Campaign.scoped, "person"] # placeholder
     when /^t/i
       [current_campaign.send("things"), "thing"]
+      [Campaign.scoped, "person"] # placeholder
     else
       [current_campaign.send(name_or_abbreviation.pluralize.underscore),
        name_or_abbreviation.underscore.downcase]
