@@ -23,5 +23,5 @@
 * DONE don't record a version for the private flag
 * DONE default campaigns and people to private
 * DONE search
-* TODO dm only text
-* TODO vp only text
+* DONE dm only text
+* DONE vp only text

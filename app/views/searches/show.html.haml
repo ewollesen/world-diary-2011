@@ -15,3 +15,13 @@
       = search_field_tag("q")
       = submit_tag("Search")
 
+
+- if @results.present?
+  - if current_user == current_campaign.dm
+    = content_for(:sidebar) do
+      %h3 Not seeing results you expected?
+      %p
+        Right now, the system searches only in the public portion of a
+        subject’s description. It is hoped that eventually the search can be
+        modified to determine what the searcher is permitted to see and
+        respond accordingly.

@@ -28,7 +28,8 @@ ActiveRecord::Schema.define(:version => 20111006040606) do
     t.string   "name"
     t.integer  "campaign_id"
     t.text     "description"
-    t.boolean  "private",     :default => true, :null => false
+    t.text     "public_description"
+    t.boolean  "private",            :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

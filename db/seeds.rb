@@ -33,7 +33,14 @@ end
 
 p = c.people.create!(name: "Alzara",
                      description: <<EOF
-#{lorem(4)}
+^Since you're a DM, I can tell you that Alzara's true age is fifty-eight.^
+
+%Since you've a VP, I can tell you that Alzara's true hair color is blonde.%
+
+#{lorem(2)}
+
+Links
+-----
 
 This is a link to a person: (Pe:Alzara)
 
@@ -42,6 +49,30 @@ This link is to a non-existent person named (Pe:Foo).
 This link has [alt text](Pe:Alzara).
 
 This link has a title (Pe:Alzara "Foo").
+
+DM-only Text
+------------
+
+One ^test^ after another.
+
+```dm
+You can test me, if you like.
+```
+
+One test ^says yes, the \\^other^ says no.
+
+VP-holder-only Text
+-------------------
+
+One %test% after another.
+
+```vp
+You can test me, if you like.
+```
+
+One test %says yes, the \\%other% says no.
+
+%Did you know that 50\\% of statistics are made up on the spot?%
 EOF
 )
 

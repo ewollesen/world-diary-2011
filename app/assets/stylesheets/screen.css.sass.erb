@@ -98,6 +98,10 @@ form
   textarea
     +column(15.5, true)
 
+ol
+  +leader(1)
+  +trailer(1)
+
 p
   +leader(1)
   +trailer(1)
@@ -150,6 +154,9 @@ table
     th
       +trailing-border($lines:0)
 
+ul
+  +leader(1)
+  +trailer(1)
 
 .actions
   .left
@@ -165,6 +172,16 @@ table
 
 .clear
   clear: both
+
+span.dm
+  background-color: #bfb
+
+p.dm
+  +rhythm(-0.5, 0.5, 0.5, -0.5, 16px)
+  background-color: #bfb
+
+.excerpt
+  +adjust-font-size-to(13px)
 
 .highlight
   background-color: yellow
@@ -186,6 +203,20 @@ table
   +rhythm-borders(0px, 0.5)
   background-color: #ddd
 
+span.vp
+  background-color: #fbf
+
+p.vp
+  +rhythm(-0.5, 0.5, 0.5, -0.5, 16px)
+  background-color: #fbf
+
+body.searches
+  dt
+    +leader(0.5)
+
+  dd
+    +trailer(0.5)
+    +adjust-font-size-to(13px)
 
 #content
   +column(24, true)

@@ -231,6 +231,7 @@ DEPENDENCIES
   hpricot
   jquery-rails
   launchy
+  nokogiri
   paper_trail (~> 2)
   pg
   pg_search

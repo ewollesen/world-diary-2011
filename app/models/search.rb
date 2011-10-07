@@ -1,8 +1,8 @@
 class Search
-
   MAX_RESULTS = 25
 
-  def self.perform(terms, campaign=nil)
+
+  def self.perform(terms, user=nil, campaign=nil)
     root = campaign ? campaign.people : Person.scoped
     root.with_permissions_to(:read)
       .order("pg_search_rank DESC, name")

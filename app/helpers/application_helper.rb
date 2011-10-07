@@ -77,10 +77,23 @@ module ApplicationHelper
     "See all #{pluralize(scope.with_permissions_to(:read).count, term)}.".html_safe
   end
 
+  def description(text)
+    step1 = highlight(markdown(linkify(text)), params[:q])
+    return step1 if is_dm?
+    step2 = strip_dm(step1)
+    return step2 if visible_due_to_veil_pass?(@person) # FIXME
+    step3 = strip_vp(step2)
+  end
+
   def markdown(text)
-    @renderer ||= Redcarpet::Render::XHTML.new(with_toc_data: true)
-    @markdown ||= Redcarpet::Markdown.new(@renderer, tables: true)
+    @renderer ||= WdMarkdown.new(with_toc_data: true)
+    @markdown ||= Redcarpet::Markdown.new(@renderer, tables: true, :fenced_code_blocks => true)
     @markdown.render(h(text)).html_safe
+  end
+
+  def is_dm?
+    return false unless user_signed_in?
+    current_user.campaign_ids.include?(current_campaign.id)
   end
 
   def visible_due_to_veil_pass?(subject)
@@ -95,6 +108,46 @@ module ApplicationHelper
 
 
   protected
+
+  def strip_dm(text)
+    dm_xslt =<<EOF
+<?xml version='1.0' encoding='utf-8' ?>
+<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
+
+  <xsl:template match="@*|node()">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match='//*[@class="dm"]' />
+</xsl:stylesheet>
+EOF
+    xslt = Nokogiri::XSLT(dm_xslt)
+    doc = Nokogiri::XML("<div>" + text + "</div>")
+    transformed = xslt.transform(doc)
+    transformed.to_html.html_safe
+  end
+
+  def strip_vp(text)
+    vp_xslt =<<EOF
+<?xml version='1.0' encoding='utf-8' ?>
+<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
+
+  <xsl:template match="@*|node()">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match='//*[@class="vp"]' />
+</xsl:stylesheet>
+EOF
+    xslt = Nokogiri::XSLT(vp_xslt)
+    doc = Nokogiri::XML("<div>" + text + "</div>")
+    transformed = xslt.transform(doc)
+    transformed.to_html.html_safe
+  end
 
   def replace_quotes(text)
     text.gsub(/"/, "&#34;").gsub(/'/, "&#39;")

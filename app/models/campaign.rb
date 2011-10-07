@@ -7,11 +7,6 @@ class Campaign < ActiveRecord::Base
     :inverse_of => :campaigns
   has_many :people, :inverse_of => :campaign, :dependent => :destroy
 
-  multisearchable :against => [:name, :description,],
-                  :using => {
-                    :tsearch => {:prefix => true},
-                  }
-
   validates :name, :presence => true, :uniqueness => {:scope => :dm_id}
   validates :dm, :presence => true
 

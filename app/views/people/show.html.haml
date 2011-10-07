@@ -8,7 +8,7 @@
 %h1
   = append_private_icon(@person, highlight(@person.name, params[:q]))
 
-= highlight(markdown(linkify(@person.description)), params[:q])
+= description(@person.description)
 
 = render("/shared/veil_passes", subject: @person)
 
@@ -33,8 +33,8 @@
     you to view information that is otherwise considered private.  <em>Be
     careful how you share this information with other players</em>.
 
-- if @person.visible_uploads.present?
-  = content_for(:sidebar) do
+= content_for(:sidebar) do
+  - if @person.visible_uploads.present?
     - @person.visible_uploads.each do |upload|
       .upload
         = link_to(upload.url, class: "overlay_container") do
@@ -42,3 +42,27 @@
           = private_upload_icon(upload)
         .caption
           = link_to(upload.caption, upload.url)
+  - if is_dm?
+    %ul
+      %li= link_to("Toggle DM-only text", "", id: "toggle_dm_text")
+      %li= link_to("Toggle VP-only text", "", id: "toggle_vp_text")
+
+= content_for(:head) do
+  :javascript
+    $(function () {
+      function toggle_dm_text() {
+        $(".dm").toggle();
+      }
+
+      function toggle_vp_text() {
+        if ($(".vp:visible").length > 0) {
+          $(".vp").hide();
+          $(".dm").hide();
+        } else {
+          $(".vp").show();
+        }
+      }
+
+      $("#toggle_dm_text").click(function () {toggle_dm_text(); return false;});
+      $("#toggle_vp_text").click(function () {toggle_vp_text(); return false;});
+    })
