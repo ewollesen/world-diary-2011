@@ -20,14 +20,15 @@ gygax = User.create!(name: "Gary G",
                  password: "password",
                  password_confirmation: "password")
 
-c = gygax.campaigns.create!(name: "Gygaxian Hell", private: true)
-c = u.campaigns.create!(name: "Gates of Hell", private: true)
+c = gygax.campaigns.create!(name: "Gygaxian Hell")
+c = u.campaigns.create!(name: "Gates of Hell")
 c = u.campaigns.create!(name: "Rrkenlor",
-                        description: "Set in the city of the same name.")
+                        description: "Set in the city of the same name.",
+                        private: false)
 
 25.times do
   p = rand(3) + 3
-  c.people.create!(name: Faker::Name.name, description: lorem(p))
+  c.people.create!(name: Faker::Name.name, description: lorem(p), private: false)
 end
 
 p = c.people.create!(name: "Alzara",
@@ -51,6 +52,6 @@ p.uploads << photo
 pdf = PersonUpload.new("upload" => File.open(File.join(fixtures_dir, "Driving Techniques.pdf")))
 p.uploads << pdf
 
-p = c.people.create!(name: "Turtledove", description: lorem)
-p = c.people.create!(name: "Boris Mulorkan", description: lorem)
-p = c.people.create!(name: "Tanya Filamina", description: lorem)
+p = c.people.create!(name: "Turtledove", description: lorem, private: false)
+p = c.people.create!(name: "Boris Mulorkan", description: lorem, private: false)
+p = c.people.create!(name: "Tanya Filamina", description: lorem, private: false)

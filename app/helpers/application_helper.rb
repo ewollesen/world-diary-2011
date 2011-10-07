@@ -87,6 +87,13 @@ module ApplicationHelper
     subject.private && current_user.has_veil_pass_for?(subject)
   end
 
+  def highlight(text, phrases, *args)
+    options = args.extract_options!
+    args << "<span class=\"highlight\">\\1</span>" if args.empty?
+    super(text, phrases, *(args << options))
+  end
+
+
   protected
 
   def replace_quotes(text)

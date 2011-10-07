@@ -22,5 +22,6 @@
 * DONE come up with a system better than the @person.uploads.build that litters the people_controller
 * DONE don't record a version for the private flag
 * DONE default campaigns and people to private
-* TODO search
+* DONE search
 * TODO dm only text
+* TODO vp only text

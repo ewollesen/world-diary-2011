@@ -23,7 +23,7 @@ class Person < ActiveRecord::Base
 
   pg_search_scope :full_search, :against => {:name => "A", :description => "B"},
                   :using => {
-                    :tsearch => {:prefix => true},
+                    :tsearch => {:prefix => true, :normalization => 2},
                   }
 
 
