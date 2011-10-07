@@ -1,11 +1,17 @@
 - title("Person: #{@person.name}")
 
+- html = toc(@person.description)
+- if html.present?
+  .toc
+    %h3 Table of Contents
+    = html
+
 %ul.breadcrumbs
   %li= link_to(current_campaign.name, current_campaign)
   %li= link_to("People", people_path)
   %li= @person.name
 
-%h1
+%h1{style: "clear: left"}
   = append_private_icon(@person, highlight(@person.name, params[:q]))
 
 = description(@person.description)
@@ -44,25 +50,29 @@
           = link_to(upload.caption, upload.url)
   - if is_dm?
     %ul
-      %li= link_to("Toggle DM-only text", "", id: "toggle_dm_text")
-      %li= link_to("Toggle VP-only text", "", id: "toggle_vp_text")
+      %li= link_to("Show DM view", "", id: "show_dm_view")
+      %li= link_to("Show VP view", "", id: "show_vp_view")
+      %li= link_to("Show Public view", "", id: "show_public_view")
 
 = content_for(:head) do
   :javascript
     $(function () {
-      function toggle_dm_text() {
-        $(".dm").toggle();
+      function show_dm_view() {
+        $(".dm").show();
+        $(".vp").show();
       }
 
-      function toggle_vp_text() {
-        if ($(".vp:visible").length > 0) {
-          $(".vp").hide();
-          $(".dm").hide();
-        } else {
-          $(".vp").show();
-        }
+      function show_vp_view() {
+        $(".dm").hide();
+        $(".vp").show();
       }
 
-      $("#toggle_dm_text").click(function () {toggle_dm_text(); return false;});
-      $("#toggle_vp_text").click(function () {toggle_vp_text(); return false;});
+      function show_public_view() {
+        $(".dm").hide();
+        $(".vp").hide();
+      }
+
+      $("#show_dm_view").click(function () {show_dm_view(); return false;});
+      $("#show_vp_view").click(function () {show_vp_view(); return false;});
+      $("#show_public_view").click(function () {show_public_view(); return false;});
     })

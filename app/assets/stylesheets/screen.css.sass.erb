@@ -198,6 +198,20 @@ p.dm
     position: absolute
     right: 0
 
+.toc
+  +adjust-font-size-to(13px)
+  +rhythm-borders(0px, 0.5, 13px, solid)
+  background-color: #eee
+  float: right
+
+  ul
+    +leader(0)
+    +trailer(0)
+
+    ul
+      list-style-type: decimal
+      padding-left: 2em
+
 .veil_pass_description
   +adjust-font-size-to(13px)
   +rhythm-borders(0px, 0.5)

@@ -78,7 +78,15 @@ module ApplicationHelper
   end
 
   def description(text)
-    step1 = highlight(markdown(linkify(text)), params[:q])
+    step1 = markdown(highlight(linkify(text), params[:q]))
+    return step1 if is_dm?
+    step2 = strip_dm(step1)
+    return step2 if visible_due_to_veil_pass?(@person) # FIXME
+    step3 = strip_vp(step2)
+  end
+
+  def toc(text)
+    step1 = markdown_toc(linkify(text))
     return step1 if is_dm?
     step2 = strip_dm(step1)
     return step2 if visible_due_to_veil_pass?(@person) # FIXME
@@ -86,9 +94,16 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    @renderer ||= WdMarkdown.new(with_toc_data: true)
-    @markdown ||= Redcarpet::Markdown.new(@renderer, tables: true, :fenced_code_blocks => true)
+    @wd_renderer ||= WdMarkdown.new(with_toc_data: true)
+    @markdown ||= Redcarpet::Markdown.new(@wd_renderer,
+                                          tables: true, fenced_code_blocks: true)
     @markdown.render(h(text)).html_safe
+  end
+
+  def markdown_toc(text)
+    @toc_renderer ||= Redcarpet::Render::HTML_TOC.new
+    @toc_markdown ||= Redcarpet::Markdown.new(@toc_renderer)
+    @toc_markdown.render(h(text)).html_safe
   end
 
   def is_dm?
